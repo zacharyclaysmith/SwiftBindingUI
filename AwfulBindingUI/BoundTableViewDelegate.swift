@@ -19,11 +19,15 @@ public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableVi
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?
     
     private func arrayChangedListener(){
-        self.tableView?.reloadData()
+        assert(tableView != nil, "tableView property cannot be nil.")
+        
+        self.tableView!.reloadData()
     }
     
     private func indexChangedListener(indexChanged:Int){
-        self.tableView?.reloadData()
+        assert(tableView != nil, "tableView property cannot be nil.")
+        
+        self.tableView!.reloadData()
     }
     
     public var tableView:UITableView?
@@ -56,5 +60,11 @@ public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableVi
         default:
             break
         }
+    }
+    
+    public var onSelect:((indexPath:NSIndexPath) -> Void)?
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        onSelect?(indexPath: indexPath)
     }
 }
