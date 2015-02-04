@@ -63,6 +63,16 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate{
         onEndEditing?()
     }
     
+    public var onSearchButtonClick:(() -> Void)?
+    public func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        onSearchButtonClick?()
+    }
+    
+    public var onCancelButtonClick:(() -> Void)?
+    public func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        onCancelButtonClick?()
+    }
+    
     internal func textChanged(){
         _bindableValue?.value = self.text
     }
