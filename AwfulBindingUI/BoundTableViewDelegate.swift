@@ -37,18 +37,15 @@ public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableVi
     }
     
     public var cellForRowAtIndexPath:((indexPath:NSIndexPath) -> UITableViewCell)?
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //return UITableViewCell()
+        
         return cellForRowAtIndexPath != nil ? cellForRowAtIndexPath!(indexPath: indexPath) : UITableViewCell()
     }
     
     public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
-    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return "Hunts"
-    //    }
     
     public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         switch(editingStyle)
@@ -60,5 +57,4 @@ public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableVi
             break
         }
     }
-    //END REGION: UITableView* implemenations
 }
