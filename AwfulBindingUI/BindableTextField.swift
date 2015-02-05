@@ -46,7 +46,9 @@ public class BindableTextField:UITextField{
     }
     
     internal func textChanged(){
-        _bindableValue?.value = self.text
+        if(_bindableValue?.value != self.text){
+            _bindableValue?.value = self.text
+        }
     }
     
     private func valueChanged(newValue:String?){
