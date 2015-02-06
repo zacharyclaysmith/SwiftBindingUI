@@ -1,7 +1,7 @@
 import UIKit
 import AwfulBinding
 
-public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDelegate{
+public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
     private var _bindableArray:PBindableCollection?
     public var bindableArray:PBindableCollection?{
         get{
@@ -19,18 +19,12 @@ public class BoundTableViewDelegate : NSObject, UITableViewDataSource, UITableVi
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?
     
     private func arrayChangedListener(){
-        assert(tableView != nil, "tableView property cannot be nil.")
-        
-        self.tableView!.reloadData()
+        self.reloadData()
     }
     
     private func indexChangedListener(indexChanged:Int){
-        assert(tableView != nil, "tableView property cannot be nil.")
-        
-        self.tableView!.reloadData()
+        self.reloadData()
     }
-    
-    public var tableView:UITableView?
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _bindableArray != nil ? _bindableArray!.count : 0

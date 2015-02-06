@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5033B9E61A803C8E00516627 /* AwfulBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5033B9E51A803C8E00516627 /* AwfulBinding.framework */; };
+		50BB68951A8574A800842372 /* BindableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB68941A8574A800842372 /* BindableCollectionView.swift */; };
 		50C4A0C21A7AEA8B0010C199 /* AwfulBindingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C4A0C81A7AEA8B0010C199 /* AwfulBindingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4A0BC1A7AEA8B0010C199 /* AwfulBindingUI.framework */; };
 		50C4A0CF1A7AEA8B0010C199 /* AwfulBindingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0CE1A7AEA8B0010C199 /* AwfulBindingUITests.swift */; };
@@ -15,7 +16,7 @@
 		50C4A0EB1A7AEC970010C199 /* BindableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E61A7AEC970010C199 /* BindableTextField.swift */; };
 		50C4A0EC1A7AEC970010C199 /* BindableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E71A7AEC970010C199 /* BindableTextView.swift */; };
 		50C4A0ED1A7AEC970010C199 /* BindableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E81A7AEC970010C199 /* BindableImageView.swift */; };
-		50C4A0EE1A7AEC970010C199 /* BoundTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E91A7AEC970010C199 /* BoundTableViewDelegate.swift */; };
+		50C4A0EE1A7AEC970010C199 /* BindableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E91A7AEC970010C199 /* BindableTableView.swift */; };
 		50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0EA1A7AEC970010C199 /* BindableSearchBar.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		5033B9E41A803BC700516627 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5033B9E51A803C8E00516627 /* AwfulBinding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AwfulBinding.framework; path = Carthage/Build/iOS/AwfulBinding.framework; sourceTree = "<group>"; };
+		50BB68941A8574A800842372 /* BindableCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCollectionView.swift; sourceTree = "<group>"; };
 		50C4A0BC1A7AEA8B0010C199 /* AwfulBindingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AwfulBindingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C4A0C01A7AEA8B0010C199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AwfulBindingUI.h; sourceTree = "<group>"; };
@@ -42,7 +44,7 @@
 		50C4A0E61A7AEC970010C199 /* BindableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTextField.swift; sourceTree = "<group>"; };
 		50C4A0E71A7AEC970010C199 /* BindableTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTextView.swift; sourceTree = "<group>"; };
 		50C4A0E81A7AEC970010C199 /* BindableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableImageView.swift; sourceTree = "<group>"; };
-		50C4A0E91A7AEC970010C199 /* BoundTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundTableViewDelegate.swift; sourceTree = "<group>"; };
+		50C4A0E91A7AEC970010C199 /* BindableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTableView.swift; sourceTree = "<group>"; };
 		50C4A0EA1A7AEC970010C199 /* BindableSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,10 +99,11 @@
 		50C4A0BE1A7AEA8B0010C199 /* AwfulBindingUI */ = {
 			isa = PBXGroup;
 			children = (
+				50BB68941A8574A800842372 /* BindableCollectionView.swift */,
 				50C4A0E61A7AEC970010C199 /* BindableTextField.swift */,
 				50C4A0E71A7AEC970010C199 /* BindableTextView.swift */,
 				50C4A0E81A7AEC970010C199 /* BindableImageView.swift */,
-				50C4A0E91A7AEC970010C199 /* BoundTableViewDelegate.swift */,
+				50C4A0E91A7AEC970010C199 /* BindableTableView.swift */,
 				50C4A0EA1A7AEC970010C199 /* BindableSearchBar.swift */,
 				50C4A0E41A7AEB300010C199 /* BindableButton.swift */,
 				50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */,
@@ -246,7 +249,8 @@
 				50C4A0E51A7AEB300010C199 /* BindableButton.swift in Sources */,
 				50C4A0EC1A7AEC970010C199 /* BindableTextView.swift in Sources */,
 				50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */,
-				50C4A0EE1A7AEC970010C199 /* BoundTableViewDelegate.swift in Sources */,
+				50C4A0EE1A7AEC970010C199 /* BindableTableView.swift in Sources */,
+				50BB68951A8574A800842372 /* BindableCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
