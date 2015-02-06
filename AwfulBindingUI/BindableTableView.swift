@@ -16,6 +16,34 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         }
     }
     
+    public required init(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+        
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    override init() {
+        super.init()
+        
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame:frame, style:style)
+        
+        self.delegate = self
+        self.dataSource = self
+    }
+    
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?
     
     private func arrayChangedListener(){
