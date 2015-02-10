@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5033B9E61A803C8E00516627 /* AwfulBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5033B9E51A803C8E00516627 /* AwfulBinding.framework */; };
 		50BB68951A8574A800842372 /* BindableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB68941A8574A800842372 /* BindableCollectionView.swift */; };
+		50BDFB1E1A8980C800681CD6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 50BDFB1D1A8980C800681CD6 /* README.md */; };
 		50C4A0C21A7AEA8B0010C199 /* AwfulBindingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C4A0C81A7AEA8B0010C199 /* AwfulBindingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4A0BC1A7AEA8B0010C199 /* AwfulBindingUI.framework */; };
 		50C4A0CF1A7AEA8B0010C199 /* AwfulBindingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0CE1A7AEA8B0010C199 /* AwfulBindingUITests.swift */; };
@@ -34,6 +35,7 @@
 		5033B9E41A803BC700516627 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5033B9E51A803C8E00516627 /* AwfulBinding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AwfulBinding.framework; path = Carthage/Build/iOS/AwfulBinding.framework; sourceTree = "<group>"; };
 		50BB68941A8574A800842372 /* BindableCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCollectionView.swift; sourceTree = "<group>"; };
+		50BDFB1D1A8980C800681CD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		50C4A0BC1A7AEA8B0010C199 /* AwfulBindingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AwfulBindingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C4A0C01A7AEA8B0010C199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AwfulBindingUI.h; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		50C4A0B21A7AEA8B0010C199 = {
 			isa = PBXGroup;
 			children = (
+				50BDFB1D1A8980C800681CD6 /* README.md */,
 				5033B9E41A803BC700516627 /* Cartfile */,
 				50C4A0BE1A7AEA8B0010C199 /* AwfulBindingUI */,
 				50C4A0CB1A7AEA8B0010C199 /* AwfulBindingUITests */,
@@ -250,6 +253,7 @@
 				50C4A0EC1A7AEC970010C199 /* BindableTextView.swift in Sources */,
 				50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */,
 				50C4A0EE1A7AEC970010C199 /* BindableTableView.swift in Sources */,
+				50BDFB1E1A8980C800681CD6 /* README.md in Sources */,
 				50BB68951A8574A800842372 /* BindableCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
