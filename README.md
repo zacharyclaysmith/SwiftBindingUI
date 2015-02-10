@@ -20,34 +20,92 @@ import AwfulBinding
 import AwfulBindingUI
 
 public class SomeViewController:UIViewController{
-    private var _someBindableText = BindableValue<String>(initialValue:"Hello")
+    private var _text = BindableValue<String>(initialValue:"Hello")
 
-    @IBOutlet weak var bindableTextField:BindableTextField! //NOTE: tied to a storyboard element of type BindableTextField.
+    @IBOutlet weak var textField:BindableTextField! //NOTE: tied to a storyboard element of type BindableTextField.
 
     override public viewDidLoad(){
         super.viewDidLoad()
 
-        bindableTextField.bindableValue = _someBindableText //EFFECT: bindableTextField's text field is now set to "Hello" and will update whenever _someBindableText's value is changed.
+        textField.bindableValue = _text //EFFECT: textField's text is now set to "Hello"
+
+        _text = "Test" //EFFECT textField's teext is now "Test"
     }
 }
 ```
 
 ### BindableTextView
+This works almost identically to the BindableTextField
 
 ```
-TODO
+import AwfulBinding
+import AwfulBindingUI
+
+public class SomeViewController:UIViewController{
+    private var _text = BindableValue<String>(initialValue:"Hello")
+
+    @IBOutlet weak var textView:BindableTextView! //NOTE: tied to a storyboard element of type BindableTextView.
+
+    override public viewDidLoad(){
+        super.viewDidLoad()
+
+        textView.bindableValue = _text //EFFECT: textView's text is now set to "Hello"
+
+        _text = "Test" //EFFECT textField's teext is now "Test"
+    }
+}
 ```
 
 ### BindableImageView
 
 ```
-TODO
+import AwfulBinding
+import AwfulBindingUI
+
+public class SomeViewController:UIViewController{
+    private var _text = BindableValue<String>(initialValue:"Hello")
+
+    @IBOutlet weak var textView:BindableTextView! //NOTE: tied to a storyboard element of type BindableTextView.
+
+    override public viewDidLoad(){
+        super.viewDidLoad()
+
+        textView.bindableValue = _text //EFFECT: textView's text is now set to "Hello"
+
+        _text = "Test" //EFFECT textField's teext is now "Test"
+    }
+}
 ```
 
 ### BindableTableView
+NOTE: BindableTableView doesn't currently support sectioned data (i.e. the section count is hardcoded to 1)...this is planned for later.
 
 ```
-TODO
+import AwfulBinding
+import AwfulBindingUI
+
+public class SomeViewController:UIViewController{
+    private var _data = BindableArray<String>(initialValue:["Item 1", "Item 2", "Item 3"])
+
+    @IBOutlet weak var tableView:BindableTableView! //NOTE: tied to a storyboard element of type BindableTableView
+
+    override public viewDidLoad(){
+        super.viewDidLoad()
+
+        tableView.cellForRowAtIndexPath = cellCreator
+        tableView.bindableArray = _data
+    }
+
+    private func cellCreator(indexPath:NSIndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueCellForIdentifier("SomeCellIdentifier", indexPath:indexPath)
+
+        let dataElement = _data[indexPath.row]
+
+        cell.textLabel.text = dataElement
+
+        return cell
+    }
+}
 ```
 
 ### BindableCollectionView
