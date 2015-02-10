@@ -16,15 +16,18 @@ Just pull down the repo and build it, then include the framework in your project
 ### BindableTextField
 
 ```
-public class SomeViewController:UIViewController{
-    private var _someBindableText = BindableValue<String>(initialValue:"")
+import AwfulBinding
+import AwfulBindingUI
 
-    @IBOutlet weak var bindableTextField:
+public class SomeViewController:UIViewController{
+    private var _someBindableText = BindableValue<String>(initialValue:"Hello")
+
+    @IBOutlet weak var bindableTextField:BindableTextField! //NOTE: tied to a storyboard element of type BindableTextField.
 
     override public viewDidLoad(){
         super.viewDidLoad()
 
-        bindableTextField.bindableValue = _someBindableText
+        bindableTextField.bindableValue = _someBindableText //EFFECT: bindableTextField's text field is now set to "Hello" and will update whenever _someBindableText's value is changed.
     }
 }
 ```
