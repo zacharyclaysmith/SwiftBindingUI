@@ -6,14 +6,16 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     public var data:PBindableCollection?{
         get{
             if(_sectionedData != nil && _sectionedData!.count > 0){
-                return _sectionedData![0]
+                return _sectionedData![0].data
             } else {
                 return nil
             }
         }
         set(value){
             if(value != nil){
-                self.sectionedData = BindableArray<PBindableCollection>(initialArray: [value!])
+                let defaultSection = BindableTableSection(headerText: nil, headerViewCreator: nil, data: value)
+                
+                self.sectionedData = BindableArray<BindableTableSection>(initialArray: [defaultSection])
             }
             else{
                 _sectionedData = nil
@@ -21,8 +23,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         }
     }
     
-    private var _sectionedData:BindableArray<PBindableCollection>?
-    public var sectionedData:BindableArray<PBindableCollection>?{
+    private var _sectionedData:BindableArray<BindableTableSection>?
+    public var sectionedData:BindableArray<BindableTableSection>?{
         get{
             return _sectionedData
         }
@@ -67,8 +69,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     private func sectionedDataChangedListener(){
         for section in _sectionedData!.internalArray {
-            section.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
-            section.addIndexChangedListener(self, listener: sectionIndexChangedListener)
+            section.data?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.data?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
         }
         
         self.reloadData()
@@ -104,7 +106,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
            
             let section = _sectionedData![section]
             
-            return section.count
+            return section.data!.count
         } else{
             return 0
         }
