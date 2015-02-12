@@ -12,19 +12,24 @@ import AwfulBinding
 public class BindableTableSection{
     public var headerText:String?
     public var headerViewCreator:(() -> UIView)?
-    public var data:PBindableCollection?
+    public var data:PBindableCollection!
     
-    public init(data:PBindableCollection? = nil){
+    public var createCell:((index:Int) -> UITableViewCell)?
+    
+    public init(data:PBindableCollection, createCell:((index:Int) -> UITableViewCell)? = nil){
         self.data = data
+        self.createCell = createCell
     }
     
-    public init(data:PBindableCollection?, headerText:String?){
+    public convenience init(data:PBindableCollection, headerText:String?, createCell:((index:Int) -> UITableViewCell)? = nil){
+        self.init(data:data, createCell:createCell)
+        
         self.headerText = headerText
-        self.data = data
     }
     
-    public init(data:PBindableCollection?, headerViewCreator:(() -> UIView)?){
+    public convenience init(data:PBindableCollection, headerViewCreator:(() -> UIView)?, createCell:((index:Int) -> UITableViewCell)? = nil){
+        self.init(data:data, createCell:createCell)
+        
         self.headerViewCreator = headerViewCreator
-        self.data = data
     }
 }

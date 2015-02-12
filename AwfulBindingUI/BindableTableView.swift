@@ -3,20 +3,18 @@ import AwfulBinding
 
 public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.
-    public var singleSection:PBindableCollection?{
+    public var singleSection:BindableTableSection?{
         get{
             if(_sections != nil && _sections!.count > 0){
-                return _sections![0].data
+                return _sections![0]
             } else {
                 return nil
             }
         }
         set(value){
             if(value != nil){
-                let defaultSection = BindableTableSection(data: value)
-                
-                //HACK: to add bindings
-                self.sections = BindableArray<BindableTableSection>(initialArray: [defaultSection])
+                //HACK: set to public property to add bindings properly, unsafe for subclassing.
+                self.sections = BindableArray<BindableTableSection>(initialArray: [value!])
             }
             else{
                 _sections = nil
@@ -105,7 +103,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(_sections != nil){
             assert(section < _sections!.count, "Can't get the number of rows for a section outside of the bounds of the sectioned data.") //TODO: better error message
-           
+            
             let section = _sections![section]
             
             return section.data!.count
@@ -118,10 +116,27 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         return _sections != nil ? _sections!.count : 0
     }
     
-    public var cellForRowAtIndexPath:((indexPath:NSIndexPath) -> UITableViewCell)?
+    //Used if a section doesn't have a cellCreator set.
+    public var defaultCellCreator:((sectionIndex:Int, index:Int) -> UITableViewCell)?
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return cellForRowAtIndexPath != nil ? cellForRowAtIndexPath!(indexPath: indexPath) : UITableViewCell()
+        assert(_sections != nil, "The sections property cannot be nil when drawing the table.")
+        
+        let section = _sections![indexPath.section]
+        
+        var cell:UITableViewCell!
+        
+        if(section.createCell != nil){
+            cell = section.createCell!(index: indexPath.row)
+        }
+        else if(defaultCellCreator != nil){
+            cell = defaultCellCreator!(sectionIndex:indexPath.section, index:indexPath.row)
+        }
+        else{
+            assertionFailure("No cell creator was found for section index " + String(indexPath.section) + ", and no default cell creator was set for the table.")
+        }
+        
+        return cell
     }
     
     public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
