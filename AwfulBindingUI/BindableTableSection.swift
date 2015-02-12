@@ -14,8 +14,16 @@ public class BindableTableSection{
     public var headerViewCreator:(() -> UIView)?
     public var data:PBindableCollection?
     
-    public init(headerText:String? = nil, headerViewCreator:(() -> UIView)? = nil, data:PBindableCollection? = nil){
+    public init(data:PBindableCollection? = nil){
+        self.data = data
+    }
+    
+    public init(data:PBindableCollection?, headerText:String?){
         self.headerText = headerText
+        self.data = data
+    }
+    
+    public init(data:PBindableCollection?, headerViewCreator:(() -> UIView)?){
         self.headerViewCreator = headerViewCreator
         self.data = data
     }
