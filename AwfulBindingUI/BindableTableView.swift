@@ -2,17 +2,36 @@ import UIKit
 import AwfulBinding
 
 public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
-    private var _bindableArray:PBindableCollection?
-    public var bindableArray:PBindableCollection?{
+    //HACK: convenience method...you probably shouldn't override this in descendent classes.
+    public var data:PBindableCollection?{
         get{
-            return _bindableArray
+            if(_sectionedData != nil && _sectionedData!.count > 0){
+                return _sectionedData![0]
+            } else {
+                return nil
+            }
         }
         set(value){
-            _bindableArray = value
+            if(value != nil){
+                self.sectionedData = BindableArray<PBindableCollection>(initialArray: [value!])
+            }
+            else{
+                _sectionedData = nil
+            }
+        }
+    }
+    
+    private var _sectionedData:BindableArray<PBindableCollection>?
+    public var sectionedData:BindableArray<PBindableCollection>?{
+        get{
+            return _sectionedData
+        }
+        set(value){
+            _sectionedData = value
             
-            _bindableArray?.addChangedListener(self, listener:arrayChangedListener, alertNow: true)
+            _sectionedData?.addChangedListener(self, listener:sectionedDataChangedListener, alertNow: true)
             
-            _bindableArray?.addIndexChangedListener(self, listener:indexChangedListener)
+            _sectionedData?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
         }
     }
     
@@ -46,20 +65,53 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?
     
-    private func arrayChangedListener(){
+    private func sectionedDataChangedListener(){
+        for section in _sectionedData!.internalArray {
+            section.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.addIndexChangedListener(self, listener: sectionIndexChangedListener)
+        }
+        
         self.reloadData()
     }
     
-    private func indexChangedListener(indexChanged:Int){
-        self.reloadData()
+    private func sectionIndexChangedListener(index:Int){
+        self.reloadData()//TODO: only reload if displayed data is changed?
+    }
+    
+    private func sectionChangedListener(){
+        self.reloadData()//TODO: only reload if displayed data is changed?
+    }
+    
+    private func sectionedDataIndexChangedListener(indexChanged:Int){
+        //TODO: add listeners to new index?
+        
+        self.reloadData()//TODO: only reload if displayed data is changed?
+    }
+    
+    public var titleForSectionHeader:((sectionIndex:Int) -> String?)?
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return titleForSectionHeader?(sectionIndex: section)
+    }
+    
+    public var viewForHeaderInSection:((sectionIndex:Int) -> UIView?)?
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return viewForHeaderInSection?(sectionIndex: section)
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _bindableArray != nil ? _bindableArray!.count : 0
+        if(_sectionedData != nil){
+            assert(section < _sectionedData!.count, "Can't get the number of rows for a section outside of the bounds of the sectioned data.") //TODO: better error message
+           
+            let section = _sectionedData![section]
+            
+            return section.count
+        } else{
+            return 0
+        }
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return _sectionedData != nil ? _sectionedData!.count : 0
     }
     
     public var cellForRowAtIndexPath:((indexPath:NSIndexPath) -> UITableViewCell)?
