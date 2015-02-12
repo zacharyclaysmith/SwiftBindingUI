@@ -15,7 +15,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             if(value != nil){
                 let defaultSection = BindableTableSection(data: value)
                 
-                self._sections = BindableArray<BindableTableSection>(initialArray: [defaultSection])
+                //HACK: to add bindings
+                self.sections = BindableArray<BindableTableSection>(initialArray: [defaultSection])
             }
             else{
                 _sections = nil
