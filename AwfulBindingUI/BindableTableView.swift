@@ -28,6 +28,9 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             return _sections
         }
         set(value){
+            _sections?.removeChangedListener(self)
+            _sections?.removeIndexChangedListener(self)
+            
             _sections = value
             
             _sections?.addChangedListener(self, listener:sectionedDataChangedListener, alertNow: true)
@@ -62,6 +65,11 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         
         self.delegate = self
         self.dataSource = self
+    }
+    
+    deinit{
+        _sections?.removeChangedListener(self)
+        _sections?.removeIndexChangedListener(self)
     }
     
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?

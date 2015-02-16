@@ -19,10 +19,16 @@ public class BindableButton:UIButton{
         }
         
         set(newValue){
+            _enabledBinding?.removeListener(self)
+            
             _enabledBinding = newValue
             
             _enabledBinding?.addListener(self, listener:valueChanged, alertNow: true)
         }
+    }
+    
+    deinit{
+        _enabledBinding?.removeListener(self)
     }
     
     private func valueChanged(newValue:Bool?){

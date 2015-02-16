@@ -11,6 +11,8 @@ public class BindableLabel:UILabel{
         }
         
         set(newValue){
+            _bindableValue?.removeListener(self)
+            
             _bindableValue = newValue
             
             _bindableValue?.addListener(self, listener:valueChanged, alertNow: true)
@@ -19,5 +21,9 @@ public class BindableLabel:UILabel{
     
     private func valueChanged(newValue:String?){
         self.text = newValue
+    }
+    
+    deinit{
+        _bindableValue?.removeListener(self)
     }
 }

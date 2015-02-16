@@ -19,7 +19,7 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate{
         }
         
         set(newValue){
-            //_bindableValue?.removeListener(valueChanged)
+            _bindableValue?.removeListener(self)
             
             _bindableValue = newValue
             
@@ -45,6 +45,10 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate{
         super.init(coder: aDecoder)
         
         self.delegate = self
+    }
+    
+    deinit{
+        _bindableValue?.removeListener(self)
     }
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

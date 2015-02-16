@@ -34,22 +34,17 @@ public class BindableImageView:UIImageView
         }
         
         set(newValue){
+            _bindableValue?.removeListener(self)
+            
             _bindableValue = newValue
             
             _bindableValue?.addListener(self, listener:valueChanged, alertNow:true)
         }
     }
     
-//    override public var image:UIImage?{
-//        get{
-//            return super.image
-//        }
-//        set(newValue){
-//            super.image = newValue
-//            
-//            //_bindableValue?.value = super.image
-//        }
-//    }
+    deinit{
+        _bindableValue?.removeListener(self)
+    }
     
     private func valueChanged(newValue:UIImage?){
         self.image = newValue != nil ? newValue : _nilImage //NOTE: if both newValue and _nilImage are nil, this will still result in the image being set to nil.

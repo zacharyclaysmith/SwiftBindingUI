@@ -17,6 +17,9 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
             return _bindableArray
         }
         set(value){
+            _bindableArray?.removeChangedListener(self)
+            _bindableArray?.removeIndexChangedListener(self)
+            
             _bindableArray = value
             
             _bindableArray?.addChangedListener(self, listener:arrayChangedListener, alertNow: true)
@@ -63,6 +66,11 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         
         self.delegate = self
         self.dataSource = self
+    }
+    
+    deinit{
+        _bindableArray?.removeChangedListener(self)
+        _bindableArray?.removeIndexChangedListener(self)
     }
     
     private func showFooterChangedListener(value:Bool?){

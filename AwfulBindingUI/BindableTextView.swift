@@ -19,7 +19,7 @@ public class BindableTextView:UITextView{
         }
         
         set(newValue){
-            //_bindableValue?.removeListener(valueChanged)
+            _bindableValue?.removeListener(self)
             
             _bindableValue = newValue
             
@@ -43,6 +43,10 @@ public class BindableTextView:UITextView{
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChanged"), name: UITextViewTextDidChangeNotification, object: self)
+    }
+    
+    deinit{
+        _bindableValue?.removeListener(self)
     }
     
     internal func textChanged(){

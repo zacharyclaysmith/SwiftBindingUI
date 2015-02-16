@@ -107,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				50BB68941A8574A800842372 /* BindableCollectionView.swift */,
+				50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */,
 				50C4A0E61A7AEC970010C199 /* BindableTextField.swift */,
 				50C4A0E71A7AEC970010C199 /* BindableTextView.swift */,
 				50C4A0E81A7AEC970010C199 /* BindableImageView.swift */,
@@ -116,7 +117,6 @@
 				50C4A0E41A7AEB300010C199 /* BindableButton.swift */,
 				50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */,
 				50C4A0BF1A7AEA8B0010C199 /* Supporting Files */,
-				50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */,
 			);
 			path = AwfulBindingUI;
 			sourceTree = "<group>";

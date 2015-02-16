@@ -19,7 +19,7 @@ public class BindableTextField:UITextField{
         }
         
         set(newValue){
-            //_bindableValue?.removeListener(valueChanged)
+            _bindableValue?.removeListener(self)
             
             _bindableValue = newValue
             
@@ -43,6 +43,10 @@ public class BindableTextField:UITextField{
         super.init(coder: aDecoder)
         
         self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
+    }
+    
+    deinit{
+        _bindableValue?.removeListener(self)
     }
     
     internal func textChanged(){
