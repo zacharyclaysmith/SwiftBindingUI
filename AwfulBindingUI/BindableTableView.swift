@@ -162,6 +162,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         }
     }
     
+    public var reloadOnSelect:Bool = false
+    
     public var onSelect:((section:PBindableTableSection, index:Int) -> Void)?
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -169,5 +171,9 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         
         section.onSelect?(index:indexPath.row)
         onSelect?(section:section, index:indexPath.row)
+        
+        if(reloadOnSelect){
+            tableView.reloadData()
+        }
     }
 }
