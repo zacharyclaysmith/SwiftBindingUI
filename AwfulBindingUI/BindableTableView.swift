@@ -3,7 +3,7 @@ import AwfulBinding
 
 public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.
-    public var singleSection:BindableTableSection?{
+    public var singleSection:PBindableTableSection?{
         get{
             if(_sections != nil && _sections!.count > 0){
                 return _sections![0]
@@ -14,7 +14,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         set(value){
             if(value != nil){
                 //HACK: set to public property to add bindings properly, unsafe for subclassing.
-                self.sections = BindableArray<BindableTableSection>(initialArray: [value!])
+                self.sections = BindableArray<PBindableTableSection>(initialArray: [value!])
             }
             else{
                 _sections = nil
@@ -22,8 +22,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         }
     }
     
-    private var _sections:BindableArray<BindableTableSection>?
-    public var sections:BindableArray<BindableTableSection>?{
+    private var _sections:BindableArray<PBindableTableSection>?
+    public var sections:BindableArray<PBindableTableSection>?{
         get{
             return _sections
         }
@@ -76,8 +76,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     private func sectionedDataChangedListener(){
         for section in _sections!.internalArray {
-            section.data?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
-            section.data?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
+            section.tableData?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.tableData?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
         }
         
         self.reloadData()
@@ -114,7 +114,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             
             let section = _sections![section]
             
-            return section.data!.count
+            return section.tableData!.count
         } else{
             return 0
         }
@@ -162,9 +162,12 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         }
     }
     
-    public var onSelect:((indexPath:NSIndexPath) -> Void)?
+    public var onSelect:((section:PBindableTableSection, index:Int) -> Void)?
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        onSelect?(indexPath: indexPath)
+        var section = _sections![indexPath.section]
+        
+        section.onSelect?(index:indexPath.row)
+        onSelect?(section:section, index:indexPath.row)
     }
 }
