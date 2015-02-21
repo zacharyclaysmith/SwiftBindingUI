@@ -26,9 +26,9 @@ public class BindableImageView:UIImageView
         }
     }
     
-    private var _bindableValue:BindableValue<UIImage>?
+    private var _bindableValue:BindableValue<UIImage?>?
     
-    public var bindableValue:BindableValue<UIImage>?{
+    public var bindableValue:BindableValue<UIImage?>?{
         get{
             return _bindableValue
         }
