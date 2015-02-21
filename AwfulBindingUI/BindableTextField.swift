@@ -55,7 +55,7 @@ public class BindableTextField:UITextField{
         }
     }
     
-    private func valueChanged(newValue:String?){
+    private func valueChanged(newValue:String){
         self.text = newValue
     }
 }

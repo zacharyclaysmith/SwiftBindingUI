@@ -83,7 +83,7 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate{
         }
     }
     
-    private func valueChanged(newValue:String?){
+    private func valueChanged(newValue:String){
         self.text = newValue
     }
 }

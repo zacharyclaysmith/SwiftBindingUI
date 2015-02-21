@@ -31,7 +31,7 @@ public class BindableButton:UIButton{
         _enabledBinding?.removeListener(self)
     }
     
-    private func valueChanged(newValue:Bool?){
-        self.enabled = newValue != nil ? newValue! : false
+    private func valueChanged(newValue:Bool){
+        self.enabled = newValue
     }
 }
