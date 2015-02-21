@@ -138,8 +138,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         
         if(collectionViewLayout is UICollectionViewFlowLayout
             && showFooterBinding != nil
-            && showFooterBinding!.value != nil
-            && showFooterBinding!.value!){
+            && showFooterBinding!.value){
             return (collectionViewLayout as UICollectionViewFlowLayout).footerReferenceSize
         } else{
             return CGSizeZero
