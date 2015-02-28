@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5033B9E61A803C8E00516627 /* AwfulBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5033B9E51A803C8E00516627 /* AwfulBinding.framework */; };
+		504ECC031AA1A491006F05C2 /* BindableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ECC021AA1A491006F05C2 /* BindableSwitch.swift */; };
+		50965EF11A9A6FC100258080 /* BindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */; };
+		50965EF31A9A6FDF00258080 /* PBindableTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF21A9A6FDF00258080 /* PBindableTextSection.swift */; };
+		50965EF51A9A701200258080 /* PBindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF41A9A701200258080 /* PBindableCollectionSection.swift */; };
 		50AA32B41A8D49600073EA6A /* BindableTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA32B31A8D49600073EA6A /* BindableTableSection.swift */; };
 		50AA32C71A8EC5A60073EA6A /* BindableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */; };
 		50BB68951A8574A800842372 /* BindableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB68941A8574A800842372 /* BindableCollectionView.swift */; };
@@ -36,6 +40,10 @@
 /* Begin PBXFileReference section */
 		5033B9E41A803BC700516627 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		5033B9E51A803C8E00516627 /* AwfulBinding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AwfulBinding.framework; path = Carthage/Build/iOS/AwfulBinding.framework; sourceTree = "<group>"; };
+		504ECC021AA1A491006F05C2 /* BindableSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableSwitch.swift; sourceTree = "<group>"; };
+		50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCollectionSection.swift; sourceTree = "<group>"; };
+		50965EF21A9A6FDF00258080 /* PBindableTextSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBindableTextSection.swift; sourceTree = "<group>"; };
+		50965EF41A9A701200258080 /* PBindableCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBindableCollectionSection.swift; sourceTree = "<group>"; };
 		50AA32B31A8D49600073EA6A /* BindableTableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTableSection.swift; sourceTree = "<group>"; };
 		50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableLabel.swift; sourceTree = "<group>"; };
 		50BB68941A8574A800842372 /* BindableCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCollectionView.swift; sourceTree = "<group>"; };
@@ -82,6 +90,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		50965EEE1A9A6E1400258080 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				50C4A0E91A7AEC970010C199 /* BindableTableView.swift */,
+				50AA32B31A8D49600073EA6A /* BindableTableSection.swift */,
+				50965EF21A9A6FDF00258080 /* PBindableTextSection.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
+		50965EEF1A9A6E3700258080 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				50BB68941A8574A800842372 /* BindableCollectionView.swift */,
+				50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */,
+				50965EF41A9A701200258080 /* PBindableCollectionSection.swift */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
 		50C4A0B21A7AEA8B0010C199 = {
 			isa = PBXGroup;
 			children = (
@@ -106,17 +134,17 @@
 		50C4A0BE1A7AEA8B0010C199 /* AwfulBindingUI */ = {
 			isa = PBXGroup;
 			children = (
-				50BB68941A8574A800842372 /* BindableCollectionView.swift */,
+				50965EEF1A9A6E3700258080 /* Collection */,
+				50965EEE1A9A6E1400258080 /* Table */,
 				50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */,
 				50C4A0E61A7AEC970010C199 /* BindableTextField.swift */,
 				50C4A0E71A7AEC970010C199 /* BindableTextView.swift */,
 				50C4A0E81A7AEC970010C199 /* BindableImageView.swift */,
-				50C4A0E91A7AEC970010C199 /* BindableTableView.swift */,
-				50AA32B31A8D49600073EA6A /* BindableTableSection.swift */,
 				50C4A0EA1A7AEC970010C199 /* BindableSearchBar.swift */,
 				50C4A0E41A7AEB300010C199 /* BindableButton.swift */,
 				50C4A0C11A7AEA8B0010C199 /* AwfulBindingUI.h */,
 				50C4A0BF1A7AEA8B0010C199 /* Supporting Files */,
+				504ECC021AA1A491006F05C2 /* BindableSwitch.swift */,
 			);
 			path = AwfulBindingUI;
 			sourceTree = "<group>";
@@ -254,11 +282,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				50C4A0EB1A7AEC970010C199 /* BindableTextField.swift in Sources */,
+				50965EF51A9A701200258080 /* PBindableCollectionSection.swift in Sources */,
 				50C4A0ED1A7AEC970010C199 /* BindableImageView.swift in Sources */,
 				50C4A0E51A7AEB300010C199 /* BindableButton.swift in Sources */,
 				50C4A0EC1A7AEC970010C199 /* BindableTextView.swift in Sources */,
+				50965EF31A9A6FDF00258080 /* PBindableTextSection.swift in Sources */,
+				50965EF11A9A6FC100258080 /* BindableCollectionSection.swift in Sources */,
 				50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */,
 				50AA32B41A8D49600073EA6A /* BindableTableSection.swift in Sources */,
+				504ECC031AA1A491006F05C2 /* BindableSwitch.swift in Sources */,
 				50C4A0EE1A7AEC970010C199 /* BindableTableView.swift in Sources */,
 				50AA32C71A8EC5A60073EA6A /* BindableLabel.swift in Sources */,
 				50BDFB1E1A8980C800681CD6 /* README.md in Sources */,

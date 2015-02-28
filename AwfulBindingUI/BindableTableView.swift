@@ -70,6 +70,8 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     deinit{
         _sections?.removeChangedListener(self)
         _sections?.removeIndexChangedListener(self)
+        
+        //TODO:remove child listeners
     }
     
     public var deleteHandler:((indexPath:NSIndexPath) -> Void)?
@@ -105,7 +107,16 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     public var viewForHeaderInSection:((sectionIndex:Int) -> UIView?)?
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        //TODO: sections should have header generators
+        
         return viewForHeaderInSection?(sectionIndex: section)
+    }
+    
+    public var viewForFooterInSection:((sectionIndex:Int) -> UIView?)?
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        //TODO: sections should have footer generators
+        
+        return viewForFooterInSection?(sectionIndex: section)
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

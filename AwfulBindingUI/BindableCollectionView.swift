@@ -11,21 +11,64 @@ import UIKit
 import AwfulBinding
 
 public class BindableCollectionView:UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    private var _bindableArray:PBindableCollection?
-    public var bindableArray:PBindableCollection?{
+    //HACK: convenience method...you probably shouldn't override this in descendent classes.
+    public var singleSection:PBindableCollectionSection?{
         get{
-            return _bindableArray
+            if(_sections != nil && _sections!.count > 0){
+                return _sections![0]
+            } else {
+                return nil
+            }
         }
         set(value){
-            _bindableArray?.removeChangedListener(self)
-            _bindableArray?.removeIndexChangedListener(self)
-            
-            _bindableArray = value
-            
-            _bindableArray?.addChangedListener(self, listener:arrayChangedListener, alertNow: true)
-            
-            _bindableArray?.addIndexChangedListener(self, listener:indexChangedListener)
+            if(value != nil){
+                //HACK: set to public property to add bindings properly, unsafe for subclassing.
+                self.sections = BindableArray<PBindableCollectionSection>(internalArray: [value!])
+            }
+            else{
+                _sections = nil
+            }
         }
+    }
+    
+    private var _sections:BindableArray<PBindableCollectionSection>?
+    public var sections:BindableArray<PBindableCollectionSection>?{
+        get{
+            return _sections
+        }
+        set(value){
+            _sections?.removeChangedListener(self)
+            _sections?.removeIndexChangedListener(self)
+            
+            _sections = value
+            
+            _sections?.addChangedListener(self, listener:sectionedDataChangedListener, alertNow: true)
+            
+            _sections?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
+        }
+    }
+    
+    private func sectionedDataChangedListener(){
+        for section in _sections!.internalArray {
+            section.collectionData?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.collectionData?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
+        }
+        
+        self.reloadData()
+    }
+    
+    private func sectionIndexChangedListener(index:Int){
+        self.reloadData()//TODO: only reload if displayed data is changed?
+    }
+    
+    private func sectionChangedListener(){
+        self.reloadData()//TODO: only reload if displayed data is changed?
+    }
+    
+    private func sectionedDataIndexChangedListener(indexChanged:Int){
+        //TODO: add listeners to new index?
+        
+        self.reloadData()//TODO: only reload if displayed data is changed?
     }
     
     private var _showFooterBinding:BindableValue<Bool>?
@@ -69,8 +112,10 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
     }
     
     deinit{
-        _bindableArray?.removeChangedListener(self)
-        _bindableArray?.removeIndexChangedListener(self)
+        _sections?.removeChangedListener(self)
+        _sections?.removeIndexChangedListener(self)
+        
+        //TODO:remove child listeners
     }
     
     private func showFooterChangedListener(value:Bool?){
@@ -86,19 +131,42 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
     }
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return _bindableArray != nil ? _bindableArray!.count : 0
+        if(_sections != nil){
+            assert(section < _sections!.count, "Can't get the number of rows for a section outside of the bounds of the sectioned data.") //TODO: better error message
+            
+            let section = _sections![section]
+            
+            return section.collectionData!.count
+        } else{
+            return 0
+        }
     }
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return _sections != nil ? _sections!.count : 0
     }
     
-    public var cellForItemAtIndexPath:((indexPath:NSIndexPath) -> UICollectionViewCell)?
+    //Used if a section doesn't have a cellCreator set.
+    public var defaultCellCreator:((sectionIndex:Int, index:Int) -> UICollectionViewCell)?
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        assert(cellForItemAtIndexPath != nil, "No cellForItemAtIndexPath method was specified.")
+        assert(_sections != nil, "The sections property cannot be nil when drawing the table.")
         
-        return cellForItemAtIndexPath!(indexPath: indexPath)
+        let section = _sections![indexPath.section]
+        
+        var cell:UICollectionViewCell!
+        
+        if(section.createCell != nil){
+            cell = section.createCell!(index: indexPath.row)
+        }
+        else if(defaultCellCreator != nil){
+            cell = defaultCellCreator!(sectionIndex:indexPath.section, index:indexPath.row)
+        }
+        else{
+            assertionFailure("No cell creator was found for section index " + String(indexPath.section) + ", and no default cell creator was set for the table.")
+        }
+        
+        return cell
     }
     
     public var onHeaderCreation:((header:UICollectionReusableView) -> Void)?
