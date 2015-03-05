@@ -29,9 +29,30 @@ public class BindableButton:UIButton{
     
     deinit{
         _enabledBinding?.removeListener(self)
+        _hiddenBinding?.removeListener(self)
     }
     
     private func valueChanged(newValue:Bool){
         self.enabled = newValue
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }
