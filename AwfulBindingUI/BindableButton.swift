@@ -56,8 +56,8 @@ public class BindableButton:UIButton{
         self.hidden = newValue
     }
     
+    //TODO: segment by control state
     private var _imageBinding:BindableValue<UIImage?>?
-    
     public var imageBinding:BindableValue<UIImage?>?{
         get{
             return _imageBinding
@@ -73,6 +73,6 @@ public class BindableButton:UIButton{
     }
     
     private func imageBinding_valueChanged(newValue:UIImage?){
-        self.imageView?.image = newValue
+        self.setImage(newValue, forState: UIControlState.Normal)
     }
 }
