@@ -55,4 +55,24 @@ public class BindableButton:UIButton{
     private func hiddenBinding_valueChanged(newValue:Bool){
         self.hidden = newValue
     }
+    
+    private var _imageBinding:BindableValue<UIImage?>?
+    
+    public var imageBinding:BindableValue<UIImage?>?{
+        get{
+            return _imageBinding
+        }
+        
+        set(newValue){
+            _imageBinding?.removeListener(self)
+            
+            _imageBinding = newValue
+            
+            _imageBinding?.addListener(self, listener:imageBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func imageBinding_valueChanged(newValue:UIImage?){
+        self.imageView?.image = newValue
+    }
 }
