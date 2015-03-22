@@ -71,6 +71,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         _sections?.removeChangedListener(self)
         _sections?.removeIndexChangedListener(self)
         
+        _hiddenBinding?.removeListener(self)
         //TODO:remove child listeners
     }
     
@@ -186,5 +187,23 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         if(reloadOnSelect){
             tableView.reloadData()
         }
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }
