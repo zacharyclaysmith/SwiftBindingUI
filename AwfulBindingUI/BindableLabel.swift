@@ -3,9 +3,9 @@ import UIKit
 import AwfulBinding
 
 public class BindableLabel:UILabel{
-    private var _bindableValue:BindableValue<String>?
+    private var _bindableValue:BindableValue<Any>?
     
-    public var bindableValue:BindableValue<String>?{
+    public var bindableValue:BindableValue<Any>?{
         get{
             return _bindableValue
         }
@@ -19,8 +19,8 @@ public class BindableLabel:UILabel{
         }
     }
     
-    private func valueChanged(newValue:String){
-        self.text = newValue
+    private func valueChanged(newValue:Any){
+        self.text = toString(newValue)
     }
     
     deinit{
