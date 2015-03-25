@@ -27,21 +27,25 @@ public class BindableTextField:UITextField{
         }
     }
     
-    override init() {
+    public override init() {
         super.init()
     
-        self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
+        commonInit()
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
+        commonInit()
     }
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        commonInit()
+    }
+    
+    internal func commonInit(){
         self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
     }
     
