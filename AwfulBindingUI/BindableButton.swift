@@ -27,6 +27,22 @@ public class BindableButton:UIButton{
         }
     }
     
+    private var _textBinding:BindableValue<String>?
+    
+    public var textBinding:BindableValue<String>?{
+        get{
+            return _textBinding
+        }
+        
+        set(newValue){
+            _textBinding?.removeListener(self)
+            
+            _textBinding = newValue
+            
+            _textBinding?.addListener(self, listener:textBindingChanged, alertNow: true)
+        }
+    }
+    
     deinit{
         _enabledBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
@@ -34,6 +50,10 @@ public class BindableButton:UIButton{
     
     private func valueChanged(newValue:Bool){
         self.enabled = newValue
+    }
+    
+    private func textBindingChanged(newValue:String){
+        self.setTitle(newValue, forState: UIControlState.Normal)
     }
     
     private var _hiddenBinding:BindableValue<Bool>?
