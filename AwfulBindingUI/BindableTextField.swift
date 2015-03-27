@@ -10,20 +10,35 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableTextField:UITextField{
-    private var _bindableValue:BindableValue<String>?
+public class BindableTextField:UITextField, PTextBindable, PHiddenBindable{
+    private var _textBinding:BindableValue<String>?
     
+    //DEPRECATED: remove for 1.0
     public var bindableValue:BindableValue<String>?{
         get{
-            return _bindableValue
+            return _textBinding
         }
         
         set(newValue){
-            _bindableValue?.removeListener(self)
+            _textBinding?.removeListener(self)
             
-            _bindableValue = newValue
+            _textBinding = newValue
             
-            _bindableValue?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+        }
+    }
+    
+    public var textBinding:BindableValue<String>?{
+        get{
+            return _textBinding
+        }
+        
+        set(newValue){
+            _textBinding?.removeListener(self)
+            
+            _textBinding = newValue
+            
+            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
         }
     }
     
@@ -50,16 +65,37 @@ public class BindableTextField:UITextField{
     }
     
     deinit{
-        _bindableValue?.removeListener(self)
+        _textBinding?.removeListener(self)
+        _hiddenBinding?.removeListener(self)
     }
     
     internal func textChanged(){
-        if(_bindableValue?.value != self.text){
-            _bindableValue?.value = self.text
+        if(_textBinding?.value != self.text){
+            _textBinding?.value = self.text
         }
     }
     
     private func valueChanged(newValue:String){
         self.text = newValue
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableView:UIView{
+public class BindableView:UIView, PHiddenBindable{
     private var _hiddenBinding:BindableValue<Bool>?
     
     public var hiddenBinding:BindableValue<Bool>?{
@@ -23,7 +23,7 @@ public class BindableView:UIView{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
         }
     }
     
@@ -31,7 +31,7 @@ public class BindableView:UIView{
         _hiddenBinding?.removeListener(self)
     }
     
-    private func valueChanged(newValue:Bool){
+    private func hiddenBinding_valueChanged(newValue:Bool){
         self.hidden = newValue
     }
 }

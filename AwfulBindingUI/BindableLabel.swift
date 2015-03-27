@@ -2,20 +2,35 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableLabel:UILabel{
-    private var _bindableValue:BindableValue<String>?
+public class BindableLabel:UILabel, PTextBindable, PHiddenBindable{
+    private var _textBinding:BindableValue<String>?
     
+    //DEPRECATED
     public var bindableValue:BindableValue<String>?{
         get{
-            return _bindableValue
+            return _textBinding
         }
         
         set(newValue){
-            _bindableValue?.removeListener(self)
+            _textBinding?.removeListener(self)
             
-            _bindableValue = newValue
+            _textBinding = newValue
             
-            _bindableValue?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+        }
+    }
+    
+    public var textBinding:BindableValue<String>?{
+        get{
+            return _textBinding
+        }
+        
+        set(newValue){
+            _textBinding?.removeListener(self)
+            
+            _textBinding = newValue
+            
+            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
         }
     }
     
@@ -24,7 +39,7 @@ public class BindableLabel:UILabel{
     }
     
     deinit{
-        _bindableValue?.removeListener(self)
+        _textBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
     }
     

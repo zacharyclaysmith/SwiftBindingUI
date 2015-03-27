@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableImageView:UIImageView
+public class BindableImageView:UIImageView, PHiddenBindable
 {
     private var _nilImage:UIImage?
     public var nilImage:UIImage?{
@@ -44,9 +44,30 @@ public class BindableImageView:UIImageView
     
     deinit{
         _bindableValue?.removeListener(self)
+        _hiddenBinding?.removeListener(self)
     }
     
     private func valueChanged(newValue:UIImage?){
         self.image = newValue != nil ? newValue : _nilImage //NOTE: if both newValue and _nilImage are nil, this will still result in the image being set to nil.
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }

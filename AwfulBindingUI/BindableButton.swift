@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableButton:UIButton{
+public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
     private var _enabledBinding:BindableValue<Bool>?
     
     public var enabledBinding:BindableValue<Bool>?{

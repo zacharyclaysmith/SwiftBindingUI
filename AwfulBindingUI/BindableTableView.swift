@@ -1,7 +1,7 @@
 import UIKit
 import AwfulBinding
 
-public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
+public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate, PHiddenBindable{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.
     public var singleSection:PBindableTableSection?{
         get{

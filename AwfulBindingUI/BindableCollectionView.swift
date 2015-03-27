@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableCollectionView:UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+public class BindableCollectionView:UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PHiddenBindable{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.
     public var singleSection:PBindableCollectionSection?{
         get{
@@ -114,6 +114,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
     deinit{
         _sections?.removeChangedListener(self)
         _sections?.removeIndexChangedListener(self)
+        _hiddenBinding?.removeListener(self)
         
         //TODO:remove child listeners
     }
@@ -224,5 +225,25 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         _selectedIndex = indexPath
         
         onSelectedIndex?(indexPath: indexPath)
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }

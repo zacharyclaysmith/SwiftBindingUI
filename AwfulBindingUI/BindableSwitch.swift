@@ -10,20 +10,35 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableSwitch:UISwitch{
-    private var _bindableValue:BindableValue<Bool>?
+public class BindableSwitch:UISwitch, PHiddenBindable{
+    private var _onBinding:BindableValue<Bool>?
     
+    //DEPRECATED
     public var bindableValue:BindableValue<Bool>?{
         get{
-            return _bindableValue
+            return _onBinding
         }
         
         set(newValue){
-            _bindableValue?.removeListener(self)
+            _onBinding?.removeListener(self)
             
-            _bindableValue = newValue
+            _onBinding = newValue
             
-            _bindableValue?.addListener(self, listener:valueChanged, alertNow: true)
+            _onBinding?.addListener(self, listener:valueChanged, alertNow: true)
+        }
+    }
+    
+    public var onBinding:BindableValue<Bool>?{
+        get{
+            return _onBinding
+        }
+        
+        set(newValue){
+            _onBinding?.removeListener(self)
+            
+            _onBinding = newValue
+            
+            _onBinding?.addListener(self, listener:valueChanged, alertNow: true)
         }
     }
     
@@ -46,18 +61,39 @@ public class BindableSwitch:UISwitch{
     }
     
     private func valueChanged(newValue:Bool){
-        if(_bindableValue != nil && _bindableValue!.value != self.on){
+        if(_onBinding != nil && _onBinding!.value != self.on){
             self.on = newValue
         }
     }
     
     public func switchChanged(){
-        if(_bindableValue != nil && _bindableValue!.value != self.on){
-            _bindableValue!.value = self.on
+        if(_onBinding != nil && _onBinding!.value != self.on){
+            _onBinding!.value = self.on
         }
     }
     
     deinit{
-        _bindableValue?.removeListener(self)
+        _onBinding?.removeListener(self)
+        _hiddenBinding?.removeListener(self)
+    }
+    
+    private var _hiddenBinding:BindableValue<Bool>?
+    
+    public var hiddenBinding:BindableValue<Bool>?{
+        get{
+            return _hiddenBinding
+        }
+        
+        set(newValue){
+            _hiddenBinding?.removeListener(self)
+            
+            _hiddenBinding = newValue
+            
+            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+        }
+    }
+    
+    private func hiddenBinding_valueChanged(newValue:Bool){
+        self.hidden = newValue
     }
 }
