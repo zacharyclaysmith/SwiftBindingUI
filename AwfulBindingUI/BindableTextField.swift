@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import AwfulBinding
 
-public class BindableTextField:UITextField, PTextBindable, PHiddenBindable{
+public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, PHiddenBindable{
+    public var onEditingStarting:(() -> Void)?
+    public var onEditingEnding:(() -> Void)?
+    
     private var _textBinding:BindableValue<String>?
     
     //DEPRECATED: remove for 1.0
@@ -61,6 +64,8 @@ public class BindableTextField:UITextField, PTextBindable, PHiddenBindable{
     }
     
     internal func commonInit(){
+        self.delegate = self //TODO: override this setter and alert when this is set to something other than self (do this for most of these components as well)
+        
         self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
     }
     
@@ -97,5 +102,17 @@ public class BindableTextField:UITextField, PTextBindable, PHiddenBindable{
     
     private func hiddenBinding_valueChanged(newValue:Bool){
         self.hidden = newValue
+    }
+    
+    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        onEditingStarting?()
+        
+        return true
+    }
+    
+    public func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        onEditingEnding?()
+        
+        return true
     }
 }
