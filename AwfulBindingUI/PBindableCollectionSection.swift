@@ -14,6 +14,6 @@ public protocol PBindableCollectionSection{
     var headerViewCreator:(() -> UIView)? {get set}
     var collectionData:PBindableCollection! {get}
     
-    var createCell:((index:Int) -> UICollectionViewCell)? {get set}
+    var createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)? {get set}
     var onSelect:((index:Int) -> Void)? {get set}
 }

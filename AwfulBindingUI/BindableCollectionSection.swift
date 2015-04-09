@@ -20,22 +20,22 @@ public class BindableCollectionSection<T>:PBindableCollectionSection{
     
     public var data:BindableArray<T>!
     
-    public var createCell:((index:Int) -> UICollectionViewCell)?
+    public var createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)?
     
     public var onSelect:((index:Int) -> Void)?
     
-    public init(data:BindableArray<T>, createCell:((index:Int) -> UICollectionViewCell)? = nil){
+    public init(data:BindableArray<T>, createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)? = nil){
         self.data = data
         self.createCell = createCell
     }
     
-    public convenience init(data:BindableArray<T>, headerText:String?, createCell:((index:Int) -> UICollectionViewCell)? = nil){
+    public convenience init(data:BindableArray<T>, headerText:String?, createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)? = nil){
         self.init(data:data, createCell:createCell)
         
         self.headerText = headerText
     }
     
-    public convenience init(data:BindableArray<T>, headerViewCreator:(() -> UIView)?, createCell:((index:Int) -> UICollectionViewCell)? = nil){
+    public convenience init(data:BindableArray<T>, headerViewCreator:(() -> UIView)?, createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)? = nil){
         self.init(data:data, createCell:createCell)
         
         self.headerViewCreator = headerViewCreator

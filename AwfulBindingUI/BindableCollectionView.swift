@@ -134,7 +134,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
     }
     
     //Used if a section doesn't have a cellCreator set.
-    public var defaultCellCreator:((sectionIndex:Int, index:Int) -> UICollectionViewCell)?
+    public var defaultCellCreator:((sectionIndex:Int, index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)?
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         assert(_sections != nil, "The sections property cannot be nil when drawing the table.")
@@ -144,10 +144,10 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         var cell:UICollectionViewCell!
         
         if(section.createCell != nil){
-            cell = section.createCell!(index: indexPath.row)
+            cell = section.createCell!(index: indexPath.row, indexPath:indexPath)
         }
         else if(defaultCellCreator != nil){
-            cell = defaultCellCreator!(sectionIndex:indexPath.section, index:indexPath.row)
+            cell = defaultCellCreator!(sectionIndex:indexPath.section, index:indexPath.row, indexPath:indexPath)
         }
         else{
             assertionFailure("No cell creator was found for section index " + String(indexPath.section) + ", and no default cell creator was set for the table.")
