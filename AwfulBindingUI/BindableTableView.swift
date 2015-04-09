@@ -33,7 +33,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             
             _sections = value
             
-            _sections?.addChangedListener(self, listener:sectionedDataChangedListener, alertNow: true)
+            _sections?.addChangedListener(self, alertNow: true, listener:sectionedDataChangedListener)
             
             _sections?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
         }
@@ -41,13 +41,6 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        
-        self.delegate = self
-        self.dataSource = self
-    }
-    
-    override init() {
-        super.init()
         
         self.delegate = self
         self.dataSource = self
@@ -79,7 +72,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
     
     private func sectionedDataChangedListener(){
         for section in _sections!.internalArray {
-            section.tableData?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.tableData?.addChangedListener(self, alertNow: false, listener: sectionChangedListener)
             section.tableData?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
         }
         
@@ -200,7 +193,7 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     private func hiddenBinding_valueChanged(newValue:Bool){

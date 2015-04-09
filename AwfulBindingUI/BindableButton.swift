@@ -23,7 +23,7 @@ public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
             
             _enabledBinding = newValue
             
-            _enabledBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _enabledBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -39,7 +39,7 @@ public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:textBindingChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:textBindingChanged)
         }
     }
     
@@ -68,7 +68,7 @@ public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     
@@ -88,7 +88,7 @@ public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
             
             _imageBinding = newValue
             
-            _imageBinding?.addListener(self, listener:imageBinding_valueChanged, alertNow: true)
+            _imageBinding?.addListener(self, alertNow: true, listener:imageBinding_valueChanged)
         }
     }
     

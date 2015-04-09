@@ -27,7 +27,7 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -41,14 +41,8 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
-    }
-    
-    public override init() {
-        super.init()
-    
-        commonInit()
     }
     
     public override init(frame: CGRect) {
@@ -96,7 +90,7 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

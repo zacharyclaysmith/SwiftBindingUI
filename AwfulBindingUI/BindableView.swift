@@ -23,7 +23,7 @@ public class BindableView:UIView, PHiddenBindable{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

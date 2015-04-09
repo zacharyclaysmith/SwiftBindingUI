@@ -42,7 +42,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
             
             _sections = value
             
-            _sections?.addChangedListener(self, listener:sectionedDataChangedListener, alertNow: true)
+            _sections?.addChangedListener(self, alertNow: true, listener:sectionedDataChangedListener)
             
             _sections?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
         }
@@ -50,7 +50,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
     
     private func sectionedDataChangedListener(){
         for section in _sections!.internalArray {
-            section.collectionData?.addChangedListener(self, listener: sectionChangedListener, alertNow: false)
+            section.collectionData?.addChangedListener(self, alertNow: false, listener: sectionChangedListener)
             section.collectionData?.addIndexChangedListener(self, listener: sectionIndexChangedListener)
         }
         
@@ -79,26 +79,12 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         set(value){
             _showFooterBinding = value
             
-            _showFooterBinding?.addListener(self, listener: showFooterChangedListener, alertNow: true)
+            _showFooterBinding?.addListener(self, alertNow: true, listener: showFooterChangedListener)
         }
     }
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        
-        self.delegate = self
-        self.dataSource = self
-    }
-    
-    override init() {
-        super.init()
-        
-        self.delegate = self
-        self.dataSource = self
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame:frame)
         
         self.delegate = self
         self.dataSource = self
@@ -119,7 +105,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         //TODO:remove child listeners
     }
     
-    private func showFooterChangedListener(value:Bool?){
+    private func showFooterChangedListener(value:Bool){
         self.reloadData()
     }
     
@@ -183,7 +169,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         if(kind == UICollectionElementKindSectionHeader){
             assert(headerReuseIdentifier != nil, "Tried to create a supplementary element of kind UICollectionElementKindSectionHeader without setting the headerReuseIdentifier.")
             
-            var header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath) as UICollectionReusableView
+            var header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath) as! UICollectionReusableView
 
             onHeaderCreation?(header:header)
             
@@ -191,7 +177,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         }else if(kind == UICollectionElementKindSectionFooter) {
             assert(footerReuseIdentifier != nil, "Tried to create a supplementary element of kind UICollectionElementKindSectionHeader without setting the footerReuseIdentifier.")
             
-            var footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: footerReuseIdentifier!, forIndexPath: indexPath) as UICollectionReusableView
+            var footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: footerReuseIdentifier!, forIndexPath: indexPath) as! UICollectionReusableView
             
             onFooterCreation?(footer:footer)
             
@@ -208,7 +194,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         if(collectionViewLayout is UICollectionViewFlowLayout
             && showFooterBinding != nil
             && showFooterBinding!.value){
-            return (collectionViewLayout as UICollectionViewFlowLayout).footerReferenceSize
+            return (collectionViewLayout as! UICollectionViewFlowLayout).footerReferenceSize
         } else{
             return CGSizeZero
         }
@@ -239,7 +225,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

@@ -24,7 +24,7 @@ public class BindableTextView:UITextView, PTextBindable, PHiddenBindable{
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow:true)
+            _textBinding?.addListener(self, alertNow:true, listener:valueChanged)
         }
     }
     
@@ -38,18 +38,12 @@ public class BindableTextView:UITextView, PTextBindable, PHiddenBindable{
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow:true)
+            _textBinding?.addListener(self, alertNow:true, listener:valueChanged)
         }
     }
     
-    override init() {
-        super.init()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChanged"), name: UITextViewTextDidChangeNotification, object: self)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChanged"), name: UITextViewTextDidChangeNotification, object: self)
     }
@@ -87,7 +81,7 @@ public class BindableTextView:UITextView, PTextBindable, PHiddenBindable{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

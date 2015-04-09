@@ -24,7 +24,7 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -38,18 +38,10 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
-    override init() {
-        super.init()
-        
-        self.delegate = self
-        
-//        self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -115,7 +107,7 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, 
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

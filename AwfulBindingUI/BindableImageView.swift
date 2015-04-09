@@ -38,7 +38,7 @@ public class BindableImageView:UIImageView, PHiddenBindable
             
             _bindableValue = newValue
             
-            _bindableValue?.addListener(self, listener:valueChanged, alertNow:true)
+            _bindableValue?.addListener(self, alertNow:true, listener:valueChanged)
         }
     }
     
@@ -63,7 +63,7 @@ public class BindableImageView:UIImageView, PHiddenBindable
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

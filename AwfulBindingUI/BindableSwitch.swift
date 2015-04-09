@@ -24,7 +24,7 @@ public class BindableSwitch:UISwitch, PHiddenBindable{
             
             _onBinding = newValue
             
-            _onBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _onBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -38,14 +38,8 @@ public class BindableSwitch:UISwitch, PHiddenBindable{
             
             _onBinding = newValue
             
-            _onBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _onBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
-    }
-    
-    override init() {
-        super.init()
-        
-        self.addTarget(self, action: "switchChanged", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override init(frame: CGRect) {
@@ -89,7 +83,7 @@ public class BindableSwitch:UISwitch, PHiddenBindable{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     

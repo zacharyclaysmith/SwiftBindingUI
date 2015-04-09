@@ -16,7 +16,7 @@ public class BindableLabel:UILabel, PTextBindable, PHiddenBindable{
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -30,7 +30,7 @@ public class BindableLabel:UILabel, PTextBindable, PHiddenBindable{
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, listener:valueChanged, alertNow: true)
+            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
         }
     }
     
@@ -54,7 +54,7 @@ public class BindableLabel:UILabel, PTextBindable, PHiddenBindable{
             
             _hiddenBinding = newValue
             
-            _hiddenBinding?.addListener(self, listener:hiddenBinding_valueChanged, alertNow: true)
+            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
         }
     }
     private func hiddenBinding_valueChanged(newValue:Bool){
