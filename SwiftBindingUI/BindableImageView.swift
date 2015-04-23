@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableImageView:UIImageView, PHiddenBindable
 {
@@ -26,24 +26,39 @@ public class BindableImageView:UIImageView, PHiddenBindable
         }
     }
     
-    private var _bindableValue:BindableValue<UIImage?>?
-    
+    private var _imageBinding:BindableValue<UIImage?>?
+  
+  //DEPRECATED
     public var bindableValue:BindableValue<UIImage?>?{
         get{
-            return _bindableValue
+            return _imageBinding
         }
         
         set(newValue){
-            _bindableValue?.removeListener(self)
+            _imageBinding?.removeListener(self)
             
-            _bindableValue = newValue
+            _imageBinding = newValue
             
-            _bindableValue?.addListener(self, alertNow:true, listener:valueChanged)
+            _imageBinding?.addListener(self, alertNow:true, listener:valueChanged)
         }
     }
+  
+  public var imageBinding:BindableValue<UIImage?>?{
+    get{
+      return _imageBinding
+    }
     
+    set(newValue){
+      _imageBinding?.removeListener(self)
+      
+      _imageBinding = newValue
+      
+      _imageBinding?.addListener(self, alertNow:true, listener:valueChanged)
+    }
+  }
+  
     deinit{
-        _bindableValue?.removeListener(self)
+        _imageBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
     }
     

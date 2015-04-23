@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableCollectionView:UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PHiddenBindable{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.

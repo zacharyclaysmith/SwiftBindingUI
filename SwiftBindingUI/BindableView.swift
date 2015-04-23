@@ -1,6 +1,6 @@
 //
 //  BindableView.swift
-//  AwfulBindingUI
+//  SwiftBindingUI
 //
 //  Created by Zachary Smith on 3/5/15.
 //  Copyright (c) 2015 Scal.io. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableView:UIView, PHiddenBindable{
     private var _hiddenBinding:BindableValue<Bool>?

@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  AwfulBindingUI
+//  SwiftBindingUI
 //
 //  Created by Zachary Smith on 2/27/15.
 //  Copyright (c) 2015 Scal.io. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableSwitch:UISwitch, PHiddenBindable{
     private var _onBinding:BindableValue<Bool>?

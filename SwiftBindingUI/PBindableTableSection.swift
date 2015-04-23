@@ -1,19 +1,19 @@
 //
-//  PBindableCollectionSection.swift
-//  AwfulBindingUI
+//  PBindableTextSection.swift
+//  SwiftBindingUI
 //
 //  Created by Zachary Smith on 2/22/15.
 //  Copyright (c) 2015 Scal.io. All rights reserved.
 //
 
 import Foundation
-import AwfulBinding
+import SwiftBinding
 
-public protocol PBindableCollectionSection{
+public protocol PBindableTableSection{
     var headerText:String? {get set}
     var headerViewCreator:(() -> UIView)? {get set}
-    var collectionData:PBindableCollection! {get}
+    var tableData:PBindableCollection! {get}
     
-    var createCell:((index:Int, indexPath:NSIndexPath) -> UICollectionViewCell)? {get set}
+    var createCell:((index:Int) -> UITableViewCell)? {get set}
     var onSelect:((index:Int) -> Void)? {get set}
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableButton:UIButton, PTextBindable, PHiddenBindable{
     private var _enabledBinding:BindableValue<Bool>?

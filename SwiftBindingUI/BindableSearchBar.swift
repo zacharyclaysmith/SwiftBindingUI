@@ -1,22 +1,19 @@
 //
-//  BindableTextField.swift
-//  ARWorld
+//  BindableSearchBar.swift
+//  cartonomy
 //
-//  Created by Zachary Smith on 12/22/14.
-//  Copyright (c) 2014 Scal.io. All rights reserved.
+//  Created by Zachary Smith on 1/27/15.
+//  Copyright (c) 2015 scal.io. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
-public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, PHiddenBindable{
-    public var onEditingStarting:(() -> Void)?
-    public var onEditingEnding:(() -> Void)?
-    
+public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, PHiddenBindable{
     private var _textBinding:BindableValue<String>?
     
-    //DEPRECATED: remove for 1.0
+    //DEPRECATED
     public var bindableValue:BindableValue<String>?{
         get{
             return _textBinding
@@ -45,27 +42,47 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
         }
     }
     
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
-        commonInit()
+        self.delegate = self
     }
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        commonInit()
-    }
-    
-    internal func commonInit(){
-        self.delegate = self //TODO: override this setter and alert when this is set to something other than self (do this for most of these components as well)
-        
-        self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
+        self.delegate = self
     }
     
     deinit{
         _textBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
+    }
+    
+    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        textChanged()
+    }
+    
+    public var onBeginEditing:(() -> Void)?
+    
+    public var onEndEditing:(() -> Void)?
+    
+    public func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        onBeginEditing?()
+    }
+    
+    public func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        onEndEditing?()
+    }
+    
+    public var onSearchButtonClick:(() -> Void)?
+    public func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        onSearchButtonClick?()
+    }
+    
+    public var onCancelButtonClick:(() -> Void)?
+    public func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        onCancelButtonClick?()
     }
     
     internal func textChanged(){
@@ -96,17 +113,5 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
     
     private func hiddenBinding_valueChanged(newValue:Bool){
         self.hidden = newValue
-    }
-    
-    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        onEditingStarting?()
-        
-        return true
-    }
-    
-    public func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        onEditingEnding?()
-        
-        return true
     }
 }

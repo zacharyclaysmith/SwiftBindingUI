@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50C4A0BB1A7AEA8B0010C199"
-               BuildableName = "AwfulBindingUI.framework"
-               BlueprintName = "AwfulBindingUI"
-               ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+               BuildableName = "SwiftBindingUI.framework"
+               BlueprintName = "SwiftBindingUI"
+               ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50C4A0C61A7AEA8B0010C199"
-               BuildableName = "AwfulBindingUITests.xctest"
-               BlueprintName = "AwfulBindingUITests"
-               ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+               BuildableName = "SwiftBindingUITests.xctest"
+               BlueprintName = "SwiftBindingUITests"
+               ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50C4A0C61A7AEA8B0010C199"
-               BuildableName = "AwfulBindingUITests.xctest"
-               BlueprintName = "AwfulBindingUITests"
-               ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+               BuildableName = "SwiftBindingUITests.xctest"
+               BlueprintName = "SwiftBindingUITests"
+               ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50C4A0BB1A7AEA8B0010C199"
-            BuildableName = "AwfulBindingUI.framework"
-            BlueprintName = "AwfulBindingUI"
-            ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+            BuildableName = "SwiftBindingUI.framework"
+            BlueprintName = "SwiftBindingUI"
+            ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50C4A0BB1A7AEA8B0010C199"
-            BuildableName = "AwfulBindingUI.framework"
-            BlueprintName = "AwfulBindingUI"
-            ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+            BuildableName = "SwiftBindingUI.framework"
+            BlueprintName = "SwiftBindingUI"
+            ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50C4A0BB1A7AEA8B0010C199"
-            BuildableName = "AwfulBindingUI.framework"
-            BlueprintName = "AwfulBindingUI"
-            ReferencedContainer = "container:AwfulBindingUI.xcodeproj">
+            BuildableName = "SwiftBindingUI.framework"
+            BlueprintName = "SwiftBindingUI"
+            ReferencedContainer = "container:SwiftBindingUI.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

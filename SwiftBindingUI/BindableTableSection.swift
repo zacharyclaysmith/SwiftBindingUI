@@ -1,13 +1,13 @@
 //
 //  BindableSection.swift
-//  AwfulBindingUI
+//  SwiftBindingUI
 //
 //  Created by Zachary Smith on 2/12/15.
 //  Copyright (c) 2015 Scal.io. All rights reserved.
 //
 
 import Foundation
-import AwfulBinding
+import SwiftBinding
 
 public class BindableTableSection<T>:PBindableTableSection{
     public var headerText:String?

@@ -1,6 +1,6 @@
 //
-//  AwfulBindingUITests.swift
-//  AwfulBindingUITests
+//  SwiftBindingUITests.swift
+//  SwiftBindingUITests
 //
 //  Created by Zachary Smith on 1/29/15.
 //  Copyright (c) 2015 Scal.io. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class AwfulBindingUITests: XCTestCase {
+class SwiftBindingUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()

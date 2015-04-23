@@ -1,5 +1,5 @@
 import UIKit
-import AwfulBinding
+import SwiftBinding
 
 public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate, PHiddenBindable{
     //HACK: convenience method...you probably shouldn't override this in descendent classes.
