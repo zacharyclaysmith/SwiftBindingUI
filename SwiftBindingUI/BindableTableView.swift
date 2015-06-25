@@ -1,63 +1,63 @@
 import UIKit
 import SwiftBinding
 
-public class BindableTableView : UITableView, UITableViewDataSource, UITableViewDelegate, PHiddenBindable{
-    //HACK: convenience method...you probably shouldn't override this in descendent classes.
-    public var singleSection:PBindableTableSection?{
-        get{
-            if(_sections != nil && _sections!.count > 0){
-                return _sections![0]
-            } else {
-                return nil
-            }
-        }
-        set(value){
-            if(value != nil){
-                //HACK: set to public property to add bindings properly, unsafe for subclassing.
-                self.sections = BindableArray<PBindableTableSection>(internalArray: [value!])
-            }
-            else{
-                _sections = nil
-            }
-        }
+public class BindableTableView : SwiftTableView, PHiddenBindable{
+  //HACK: convenience method...you probably shouldn't override this in descendent classes.
+  //DEPRECATED: use dataSection
+  public var singleSection:PBindableTableSection?{
+    get{
+      return self.dataSection
     }
-    
+    set(value){
+      self.dataSection = value
+    }
+  }
+  
+  public var dataSection:PBindableTableSection?{
+    get{
+      if(_sections != nil && _sections!.count > 0){
+        return _sections![0]
+      } else {
+        return nil
+      }
+    }
+    set(value){
+      if(value != nil){
+        //HACK: set to public property to add bindings properly, unsafe for subclassing.
+        self.sections = BindableArray<PBindableTableSection>(internalArray: [value!])
+      }
+      else{
+        _sections = nil
+      }
+    }
+  }
+  
+  public var dataSections:BindableArray<PBindableTableSection>?{
+    get{
+      return _sections
+    }
+    set(value){
+      _sections?.removeChangedListener(self)
+      _sections?.removeIndexChangedListener(self)
+      
+      _sections = value
+      
+      _sections?.addChangedListener(self, alertNow: true, listener:sectionedDataChangedListener)
+      
+      _sections?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
+    }
+  }
+  
     private var _sections:BindableArray<PBindableTableSection>?
+  
+  //DEPRECATED: use dataSections
     public var sections:BindableArray<PBindableTableSection>?{
         get{
-            return _sections
+            return self.dataSections
         }
         set(value){
-            _sections?.removeChangedListener(self)
-            _sections?.removeIndexChangedListener(self)
-            
-            _sections = value
-            
-            _sections?.addChangedListener(self, alertNow: true, listener:sectionedDataChangedListener)
-            
-            _sections?.addIndexChangedListener(self, listener:sectionedDataIndexChangedListener)
+            self.dataSections = value
         }
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder:aDecoder)
-        
-        self.delegate = self
-        self.dataSource = self
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame:frame)
-        
-        self.delegate = self
-        self.dataSource = self
-    }
-    
-    override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame:frame, style:style)
-        
-        self.delegate = self
-        self.dataSource = self
     }
     
     deinit{
@@ -79,41 +79,37 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
         self.reloadData()
     }
     
-    private func sectionIndexChangedListener(index:Int){
-        self.reloadData()//TODO: only reload if displayed data is changed?
-    }
+  private func sectionIndexChangedListener(index:Int){
+      self.reloadData()//TODO: only reload if displayed data is changed?
+  }
+  
+  private func sectionChangedListener(){
+      self.reloadData()//TODO: only reload if displayed data is changed?
+  }
+  
+  private func sectionedDataIndexChangedListener(indexChanged:Int){
+      //TODO: add listeners to new index?
+      
+      self.reloadData()//TODO: only reload if displayed data is changed?
+  }
+  
+  public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return _sections?[section].headerText ?? super.tableView(tableView, titleForHeaderInSection: section)
+  }
+  
+  public override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    return _sections?[section].headerViewCreator?() ?? super.tableView(tableView, viewForHeaderInSection: section)
+  }
+  
+  public override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    return _sections?[section].footerText ?? super.tableView(tableView, titleForFooterInSection: section)
+  }
+  
+  public override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return _sections?[section].footerViewCreator?() ?? super.tableView(tableView, viewForFooterInSection: section)
+  }
     
-    private func sectionChangedListener(){
-        self.reloadData()//TODO: only reload if displayed data is changed?
-    }
-    
-    private func sectionedDataIndexChangedListener(indexChanged:Int){
-        //TODO: add listeners to new index?
-        
-        self.reloadData()//TODO: only reload if displayed data is changed?
-    }
-    
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = _sections?[section]
-        
-        return section?.headerText
-    }
-    
-    public var viewForHeaderInSection:((sectionIndex:Int) -> UIView?)?
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //TODO: sections should have header generators
-        
-        return viewForHeaderInSection?(sectionIndex: section)
-    }
-    
-    public var viewForFooterInSection:((sectionIndex:Int) -> UIView?)?
-    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        //TODO: sections should have footer generators
-        
-        return viewForFooterInSection?(sectionIndex: section)
-    }
-    
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(_sections != nil){
             assert(section < _sections!.count, "Can't get the number of rows for a section outside of the bounds of the sectioned data.") //TODO: better error message
             
@@ -121,82 +117,92 @@ public class BindableTableView : UITableView, UITableViewDataSource, UITableView
             
             return section.tableData!.count
         } else{
-            return 0
+            return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return _sections != nil ? _sections!.count : 0
+    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return _sections?.count ?? super.numberOfSectionsInTableView(tableView)
     }
     
     //Used if a section doesn't have a cellCreator set.
-    public var defaultCellCreator:((sectionIndex:Int, index:Int) -> UITableViewCell)?
-    
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        assert(_sections != nil, "The sections property cannot be nil when drawing the table.")
-        
-        let section = _sections![indexPath.section]
-        
-        var cell:UITableViewCell!
-        
-        if(section.createCell != nil){
-            cell = section.createCell!(index: indexPath.row)
+    //DEPRECATED: currently uses complex and inefficient closure wrappers to mimic old functionality.
+  public var defaultCellCreator:((sectionIndex:Int, index:Int) -> UITableViewCell)?{
+    get{
+      var wrapperClosure:((sectionIndex:Int, index:Int) -> UITableViewCell)? = nil
+      
+      if(self.cellForRowAtIndexPath != nil){
+        wrapperClosure = {(sectionIndex:Int, index:Int) -> UITableViewCell in
+          return self.cellForRowAtIndexPath!(indexPath:NSIndexPath(forRow: index, inSection: sectionIndex)!)
         }
-        else if(defaultCellCreator != nil){
-            cell = defaultCellCreator!(sectionIndex:indexPath.section, index:indexPath.row)
-        }
-        else{
-            assertionFailure("No cell creator was found for section index " + String(indexPath.section) + ", and no default cell creator was set for the table.")
-        }
-        
-        return cell
+      }
+      
+      return wrapperClosure
     }
     
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        switch(editingStyle)
-        {
-        case UITableViewCellEditingStyle.Delete:
-            deleteHandler?(indexPath:indexPath)
-            break
-        default:
-            break
+    set(value){
+      if(value != nil){
+        self.cellForRowAtIndexPath = {(indexPath:NSIndexPath) -> UITableViewCell in
+          return value!(sectionIndex: indexPath.section, index: indexPath.row)
         }
+      }else{
+        self.cellForRowAtIndexPath = nil
+      }
     }
+  }
     
-    public var reloadOnSelect:Bool = false
+  public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    return _sections?[indexPath.section].createCell?(index: indexPath.row) ?? super.tableView(tableView, cellForRowAtIndexPath:indexPath)
+  }
+  
+  public override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    super.tableView(tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
     
-    public var onSelect:((section:PBindableTableSection, index:Int) -> Void)?
-    
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var section = _sections![indexPath.section]
-        
-        section.onSelect?(index:indexPath.row)
-        onSelect?(section:section, index:indexPath.row)
-        
-        if(reloadOnSelect){
-            tableView.reloadData()
-        }
+    //DEPRECATED: needs to be handled differently in the future.
+    switch(editingStyle)
+    {
+    case UITableViewCellEditingStyle.Delete:
+        deleteHandler?(indexPath:indexPath)
+        break
+    default:
+        break
     }
+  }
+  
+  public var reloadOnSelect:Bool = false
+  
+  public var onSelect:((section:PBindableTableSection, index:Int) -> Void)?
+  
+  public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
     
-    private var _hiddenBinding:BindableValue<Bool>?
-    public var hiddenBinding:BindableValue<Bool>?{
-        get{
-            return _hiddenBinding
-        }
-        
-        set(newValue){
-            _hiddenBinding?.removeListener(self)
-            
-            _hiddenBinding = newValue
-            
-            _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
-        }
+    _sections?[indexPath.section].onSelect?(index:indexPath.row)
+    
+    if(_sections != nil){
+      onSelect?(section:_sections![indexPath.section], index:indexPath.row)
     }
-    private func hiddenBinding_valueChanged(newValue:Bool){
-        self.hidden = newValue
+
+    if(reloadOnSelect){
+        tableView.reloadData()
     }
+  }
+    
+  private var _hiddenBinding:BindableValue<Bool>?
+  public var hiddenBinding:BindableValue<Bool>?{
+      get{
+          return _hiddenBinding
+      }
+      
+      set(newValue){
+          _hiddenBinding?.removeListener(self)
+          
+          _hiddenBinding = newValue
+          
+          _hiddenBinding?.addListener(self, alertNow: true, listener:hiddenBinding_valueChanged)
+      }
+  }
+  
+  private func hiddenBinding_valueChanged(newValue:Bool){
+      self.hidden = newValue
+  }
 }

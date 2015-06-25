@@ -10,23 +10,8 @@ import Foundation
 import UIKit
 import SwiftBinding
 
-public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, PHiddenBindable{
+public class BindableSearchBar:SwiftSearchBar, PTextBindable, PHiddenBindable{
     private var _textBinding:BindableValue<String>?
-    
-    //DEPRECATED
-    public var bindableValue:BindableValue<String>?{
-        get{
-            return _textBinding
-        }
-        
-        set(newValue){
-            _textBinding?.removeListener(self)
-            
-            _textBinding = newValue
-            
-            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
-        }
-    }
     
     public var textBinding:BindableValue<String>?{
         get{
@@ -42,53 +27,17 @@ public class BindableSearchBar:UISearchBar, UISearchBarDelegate, PTextBindable, 
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.delegate = self
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        self.delegate = self
-    }
-    
     deinit{
         _textBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
     }
-    
-    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        textChanged()
-    }
-    
-    public var onBeginEditing:(() -> Void)?
-    
-    public var onEndEditing:(() -> Void)?
-    
-    public func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        onBeginEditing?()
-    }
-    
-    public func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        onEndEditing?()
-    }
-    
-    public var onSearchButtonClick:(() -> Void)?
-    public func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        onSearchButtonClick?()
-    }
-    
-    public var onCancelButtonClick:(() -> Void)?
-    public func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        onCancelButtonClick?()
-    }
-    
-    internal func textChanged(){
+  
+    internal override func textChanged(){
         if(_textBinding?.value != self.text){
             _textBinding?.value = self.text
         }
+      
+      super.textChanged()
     }
     
     private func valueChanged(newValue:String){

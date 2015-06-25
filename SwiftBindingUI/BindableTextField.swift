@@ -10,10 +10,7 @@ import Foundation
 import UIKit
 import SwiftBinding
 
-public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, PHiddenBindable{
-    public var onEditingStarting:(() -> Void)?
-    public var onEditingEnding:(() -> Void)?
-    
+public class BindableTextField:SwiftTextField, PTextBindable, PHiddenBindable{
     private var _textBinding:BindableValue<String>?
     
     //DEPRECATED: remove for 1.0
@@ -27,7 +24,7 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
+            _textBinding?.addListener(self, alertNow: true, listener:boundValueChanged)
         }
     }
     
@@ -41,26 +38,8 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
             
             _textBinding = newValue
             
-            _textBinding?.addListener(self, alertNow: true, listener:valueChanged)
+            _textBinding?.addListener(self, alertNow: true, listener:boundValueChanged)
         }
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        commonInit()
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    
-    internal func commonInit(){
-        self.delegate = self //TODO: override this setter and alert when this is set to something other than self (do this for most of these components as well)
-        
-        self.addTarget(self, action: Selector("textChanged"), forControlEvents: UIControlEvents.EditingChanged)
     }
     
     deinit{
@@ -68,13 +47,15 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
         _hiddenBinding?.removeListener(self)
     }
     
-    internal func textChanged(){
-        if(_textBinding?.value != self.text){
-            _textBinding?.value = self.text
-        }
+    internal override func textChanged(){
+      if(_textBinding?.value != self.text){
+          _textBinding?.value = self.text
+      }
+      
+      super.textChanged()
     }
     
-    private func valueChanged(newValue:String){
+    private func boundValueChanged(newValue:String){
         self.text = newValue
     }
     
@@ -96,17 +77,5 @@ public class BindableTextField:UITextField, UITextFieldDelegate, PTextBindable, 
     
     private func hiddenBinding_valueChanged(newValue:Bool){
         self.hidden = newValue
-    }
-    
-    public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        onEditingStarting?()
-        
-        return true
-    }
-    
-    public func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        onEditingEnding?()
-        
-        return true
     }
 }

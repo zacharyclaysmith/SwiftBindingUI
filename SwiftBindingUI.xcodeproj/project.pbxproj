@@ -11,7 +11,6 @@
 		50544D5E1AC5E2B700BD1B8E /* PTextBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50544D5D1AC5E2B700BD1B8E /* PTextBindable.swift */; };
 		50544D621AC5E39400BD1B8E /* PHiddenBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50544D611AC5E39400BD1B8E /* PHiddenBindable.swift */; };
 		50965EF11A9A6FC100258080 /* BindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */; };
-		50965EF31A9A6FDF00258080 /* PBindableTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF21A9A6FDF00258080 /* PBindableTableSection.swift */; };
 		50965EF51A9A701200258080 /* PBindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF41A9A701200258080 /* PBindableCollectionSection.swift */; };
 		50AA32B41A8D49600073EA6A /* BindableTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA32B31A8D49600073EA6A /* BindableTableSection.swift */; };
 		50AA32C71A8EC5A60073EA6A /* BindableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */; };
@@ -40,11 +39,20 @@
 		E462F9301AE83A080019E621 /* BindableSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504ECC021AA1A491006F05C2 /* BindableSwitch.swift */; };
 		E462F9311AE83A080019E621 /* BindableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C4A0E91A7AEC970010C199 /* BindableTableView.swift */; };
 		E462F9321AE83A080019E621 /* BindableTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA32B31A8D49600073EA6A /* BindableTableSection.swift */; };
-		E462F9331AE83A080019E621 /* PBindableTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF21A9A6FDF00258080 /* PBindableTableSection.swift */; };
 		E462F9341AE83A080019E621 /* BindableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB68941A8574A800842372 /* BindableCollectionView.swift */; };
 		E462F9351AE83A080019E621 /* BindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */; };
 		E462F9361AE83A080019E621 /* PBindableCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50965EF41A9A701200258080 /* PBindableCollectionSection.swift */; };
 		E462F9381AE83BD30019E621 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E462F9371AE83BD30019E621 /* Podfile */; };
+		E4C6D6581B2A108E00E0EDF3 /* UIView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D6571B2A108E00E0EDF3 /* UIView-Extensions.swift */; };
+		E4C6D6591B2A108E00E0EDF3 /* UIView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D6571B2A108E00E0EDF3 /* UIView-Extensions.swift */; };
+		E4C6D65B1B2A113800E0EDF3 /* SwiftTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D65A1B2A113800E0EDF3 /* SwiftTextField.swift */; };
+		E4C6D65C1B2A113800E0EDF3 /* SwiftTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D65A1B2A113800E0EDF3 /* SwiftTextField.swift */; };
+		E4C6D65E1B2A1A2C00E0EDF3 /* SwiftTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D65D1B2A1A2C00E0EDF3 /* SwiftTextView.swift */; };
+		E4C6D65F1B2A1A2C00E0EDF3 /* SwiftTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D65D1B2A1A2C00E0EDF3 /* SwiftTextView.swift */; };
+		E4C6D6611B2A1CC100E0EDF3 /* SwiftSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */; };
+		E4C6D6621B2A1CC100E0EDF3 /* SwiftSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */; };
+		E4EE423A1B3BB67400D48BFE /* SwiftTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */; };
+		E4EE423B1B3BB67400D48BFE /* SwiftTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +73,6 @@
 		50544D5D1AC5E2B700BD1B8E /* PTextBindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTextBindable.swift; sourceTree = "<group>"; };
 		50544D611AC5E39400BD1B8E /* PHiddenBindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHiddenBindable.swift; sourceTree = "<group>"; };
 		50965EF01A9A6FC100258080 /* BindableCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableCollectionSection.swift; sourceTree = "<group>"; };
-		50965EF21A9A6FDF00258080 /* PBindableTableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBindableTableSection.swift; sourceTree = "<group>"; };
 		50965EF41A9A701200258080 /* PBindableCollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PBindableCollectionSection.swift; sourceTree = "<group>"; };
 		50AA32B31A8D49600073EA6A /* BindableTableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableTableSection.swift; sourceTree = "<group>"; };
 		50AA32C61A8EC5A60073EA6A /* BindableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableLabel.swift; sourceTree = "<group>"; };
@@ -93,6 +100,11 @@
 		E459820B1AE8655D008393A5 /* SwiftBindingUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftBindingUI.podspec; sourceTree = "<group>"; };
 		E459820D1AE87902008393A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E462F9371AE83BD30019E621 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E4C6D6571B2A108E00E0EDF3 /* UIView-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-Extensions.swift"; sourceTree = "<group>"; };
+		E4C6D65A1B2A113800E0EDF3 /* SwiftTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTextField.swift; sourceTree = "<group>"; };
+		E4C6D65D1B2A1A2C00E0EDF3 /* SwiftTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTextView.swift; sourceTree = "<group>"; };
+		E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSearchBar.swift; sourceTree = "<group>"; };
+		E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +143,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		50544D601AC5E36100BD1B8E /* Components */ = {
+		50544D601AC5E36100BD1B8E /* Bindable Components */ = {
 			isa = PBXGroup;
 			children = (
 				50BEF3111AA908A700790864 /* BindableView.swift */,
@@ -145,7 +157,7 @@
 				50965EEE1A9A6E1400258080 /* Table */,
 				50965EEF1A9A6E3700258080 /* Collection */,
 			);
-			name = Components;
+			name = "Bindable Components";
 			sourceTree = "<group>";
 		};
 		50965EEE1A9A6E1400258080 /* Table */ = {
@@ -153,7 +165,6 @@
 			children = (
 				50C4A0E91A7AEC970010C199 /* BindableTableView.swift */,
 				50AA32B31A8D49600073EA6A /* BindableTableSection.swift */,
-				50965EF21A9A6FDF00258080 /* PBindableTableSection.swift */,
 			);
 			name = Table;
 			sourceTree = "<group>";
@@ -195,9 +206,10 @@
 		50C4A0BE1A7AEA8B0010C199 /* SwiftBindingUI */ = {
 			isa = PBXGroup;
 			children = (
+				E4C6D6531B2A0FD900E0EDF3 /* SwiftUI */,
 				50544D611AC5E39400BD1B8E /* PHiddenBindable.swift */,
 				50544D5D1AC5E2B700BD1B8E /* PTextBindable.swift */,
-				50544D601AC5E36100BD1B8E /* Components */,
+				50544D601AC5E36100BD1B8E /* Bindable Components */,
 				50C4A0C11A7AEA8B0010C199 /* SwiftBindingUI.h */,
 				50C4A0BF1A7AEA8B0010C199 /* Supporting Files */,
 			);
@@ -236,6 +248,18 @@
 				08E5ED2C1C043FACEB0252F2 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E4C6D6531B2A0FD900E0EDF3 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				E4C6D6571B2A108E00E0EDF3 /* UIView-Extensions.swift */,
+				E4C6D65A1B2A113800E0EDF3 /* SwiftTextField.swift */,
+				E4C6D65D1B2A1A2C00E0EDF3 /* SwiftTextView.swift */,
+				E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */,
+				E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */,
+			);
+			name = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,14 +423,18 @@
 			files = (
 				50C4A0EB1A7AEC970010C199 /* BindableTextField.swift in Sources */,
 				50965EF51A9A701200258080 /* PBindableCollectionSection.swift in Sources */,
+				E4EE423A1B3BB67400D48BFE /* SwiftTableView.swift in Sources */,
+				E4C6D6581B2A108E00E0EDF3 /* UIView-Extensions.swift in Sources */,
+				E4C6D6611B2A1CC100E0EDF3 /* SwiftSearchBar.swift in Sources */,
 				50C4A0ED1A7AEC970010C199 /* BindableImageView.swift in Sources */,
 				50C4A0E51A7AEB300010C199 /* BindableButton.swift in Sources */,
 				50544D5E1AC5E2B700BD1B8E /* PTextBindable.swift in Sources */,
 				50C4A0EC1A7AEC970010C199 /* BindableTextView.swift in Sources */,
-				50965EF31A9A6FDF00258080 /* PBindableTableSection.swift in Sources */,
 				50965EF11A9A6FC100258080 /* BindableCollectionSection.swift in Sources */,
 				50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */,
 				50544D621AC5E39400BD1B8E /* PHiddenBindable.swift in Sources */,
+				E4C6D65E1B2A1A2C00E0EDF3 /* SwiftTextView.swift in Sources */,
+				E4C6D65B1B2A113800E0EDF3 /* SwiftTextField.swift in Sources */,
 				50AA32B41A8D49600073EA6A /* BindableTableSection.swift in Sources */,
 				504ECC031AA1A491006F05C2 /* BindableSwitch.swift in Sources */,
 				50BEF3121AA908A700790864 /* BindableView.swift in Sources */,
@@ -422,6 +450,9 @@
 			files = (
 				E462F9271AE83A080019E621 /* PHiddenBindable.swift in Sources */,
 				E462F9281AE83A080019E621 /* PTextBindable.swift in Sources */,
+				E4EE423B1B3BB67400D48BFE /* SwiftTableView.swift in Sources */,
+				E4C6D6591B2A108E00E0EDF3 /* UIView-Extensions.swift in Sources */,
+				E4C6D6621B2A1CC100E0EDF3 /* SwiftSearchBar.swift in Sources */,
 				E462F9291AE83A080019E621 /* BindableView.swift in Sources */,
 				E462F92A1AE83A080019E621 /* BindableLabel.swift in Sources */,
 				E462F92B1AE83A080019E621 /* BindableTextField.swift in Sources */,
@@ -430,9 +461,10 @@
 				E462F92E1AE83A080019E621 /* BindableSearchBar.swift in Sources */,
 				E462F92F1AE83A080019E621 /* BindableButton.swift in Sources */,
 				E462F9301AE83A080019E621 /* BindableSwitch.swift in Sources */,
+				E4C6D65F1B2A1A2C00E0EDF3 /* SwiftTextView.swift in Sources */,
+				E4C6D65C1B2A113800E0EDF3 /* SwiftTextField.swift in Sources */,
 				E462F9311AE83A080019E621 /* BindableTableView.swift in Sources */,
 				E462F9321AE83A080019E621 /* BindableTableSection.swift in Sources */,
-				E462F9331AE83A080019E621 /* PBindableTableSection.swift in Sources */,
 				E462F9341AE83A080019E621 /* BindableCollectionView.swift in Sources */,
 				E462F9351AE83A080019E621 /* BindableCollectionSection.swift in Sources */,
 				E462F9361AE83A080019E621 /* PBindableCollectionSection.swift in Sources */,

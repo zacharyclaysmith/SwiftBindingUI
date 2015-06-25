@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "SwiftBindingUI"
-s.version      = "1.0.0"
+s.version      = "1.1.0"
 s.summary      = "A library of simple UI components built around the SwiftBinding library."
 
 s.description  = <<-DESC

@@ -10,23 +10,8 @@ import Foundation
 import UIKit
 import SwiftBinding
 
-public class BindableTextView:UITextView, PTextBindable, PHiddenBindable{
+public class BindableTextView:SwiftTextView, PTextBindable, PHiddenBindable{
     private var _textBinding:BindableValue<String>?
-    
-    //DEPRECATED
-    public var bindableValue:BindableValue<String>?{
-        get{
-            return _textBinding
-        }
-        
-        set(newValue){
-            _textBinding?.removeListener(self)
-            
-            _textBinding = newValue
-            
-            _textBinding?.addListener(self, alertNow:true, listener:valueChanged)
-        }
-    }
     
     public var textBinding:BindableValue<String>?{
         get{
@@ -42,27 +27,17 @@ public class BindableTextView:UITextView, PTextBindable, PHiddenBindable{
         }
     }
     
-    public override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChanged"), name: UITextViewTextDidChangeNotification, object: self)
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChanged"), name: UITextViewTextDidChangeNotification, object: self)
-    }
-    
     deinit{
         _textBinding?.removeListener(self)
         _hiddenBinding?.removeListener(self)
     }
     
-    internal func textChanged(){
-        if(_textBinding?.value != self.text){
-            _textBinding?.value = self.text
-        }
+    internal override func textChanged(){
+      if(_textBinding?.value != self.text){
+          _textBinding?.value = self.text
+      }
+      
+      super.textChanged()
     }
     
     private func valueChanged(newValue:String){

@@ -9,10 +9,24 @@
 import Foundation
 import SwiftBinding
 
+public protocol PBindableTableSection{
+  var headerText:String? {get set}
+  var headerViewCreator:(() -> UIView)? {get set}
+  var footerText:String? {get set}
+  var footerViewCreator:(() -> UIView)? {get set}
+  
+  var tableData:PBindableCollection! {get}
+  
+  var createCell:((index:Int) -> UITableViewCell)? {get set}
+  var onSelect:((index:Int) -> Void)? {get set}
+}
+
 public class BindableTableSection<T>:PBindableTableSection{
     public var headerText:String?
     public var headerViewCreator:(() -> UIView)?
-    
+  public var footerText:String?
+  public var footerViewCreator:(() -> UIView)?
+  
     //EXPL: used by the BindableTableView to avoid dependency on generics (maybe Apple will make this not such a big deal later).
     public var tableData:PBindableCollection!{
         return self.data
