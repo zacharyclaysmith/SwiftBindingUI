@@ -54,12 +54,12 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
   public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     return cellForRowAtIndexPath?(indexPath: indexPath) ?? UITableViewCell()
   }
-  
-  public var canEditRowAtIndexPath:((indexPath:NSIndexPath) -> Bool)?
-  public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return canEditRowAtIndexPath?(indexPath: indexPath) ?? true
-  }
-  
+  //
+  //  public var canEditRowAtIndexPath:((indexPath:NSIndexPath) -> Bool)?
+  //  public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  //    return canEditRowAtIndexPath?(indexPath: indexPath) ?? true
+  //  }
+  //
   public var commitEditingStyleForRowAtIndexPath:((editingStyle:UITableViewCellEditingStyle, indexPath:NSIndexPath) -> Void)?
   public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     commitEditingStyleForRowAtIndexPath?(editingStyle: editingStyle, indexPath: indexPath)
@@ -140,16 +140,18 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     return estimatedHeightForFooterInSection?(section: section) ?? estimatedSectionFooterHeight
   }
   
-  public var estimatedHeightForHeaderInSection:((section:Int) -> CGFloat)?
-  public func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-    return estimatedHeightForHeaderInSection?(section: section) ?? estimatedSectionHeaderHeight
-  }
-  
-  public var estimatedHeightForRowAtIndexPath:((indexPath:NSIndexPath) -> CGFloat)?
-  public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return estimatedHeightForRowAtIndexPath?(indexPath: indexPath) ?? estimatedRowHeight
-  }
-  
+  //EXPL: commented out because these functions were causing display bugs.
+  //
+  //  public var estimatedHeightForHeaderInSection:((section:Int) -> CGFloat)?
+  //  public func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+  //    return estimatedHeightForHeaderInSection?(section: section) ?? estimatedSectionHeaderHeight
+  //  }
+  //
+  //  public var estimatedHeightForRowAtIndexPath:((indexPath:NSIndexPath) -> CGFloat)?
+  //  public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  //    return estimatedHeightForRowAtIndexPath?(indexPath: indexPath) ?? estimatedRowHeight
+  //  }
+  //
   public var heightForFooterInSection:((section:Int) -> CGFloat)?
   public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return heightForFooterInSection?(section:section) ?? estimatedSectionFooterHeight
@@ -160,11 +162,11 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     return heightForHeaderInSection?(section:section) ?? estimatedSectionHeaderHeight
   }
   
-  //HACK: implementing this function apparently results in performance penalties...should look for a work-around.
-  public var heightForRowAtIndexPath:((indexPath:NSIndexPath) -> CGFloat)?
-  public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return heightForRowAtIndexPath?(indexPath: indexPath) ?? self.rowHeight
-  }
+  //  //HACK: implementing this function apparently results in performance penalties...should look for a work-around.
+  //  public var heightForRowAtIndexPath:((indexPath:NSIndexPath) -> CGFloat)?
+  //  public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  //    return heightForRowAtIndexPath?(indexPath: indexPath) ?? self.rowHeight
+  //  }
   
   public var indentationLevelForRowAtIndexPath:((indexPath:NSIndexPath) -> Int)?
   public func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
