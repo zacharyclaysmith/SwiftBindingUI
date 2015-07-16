@@ -53,6 +53,7 @@
 		E4C6D6621B2A1CC100E0EDF3 /* SwiftSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */; };
 		E4EE423A1B3BB67400D48BFE /* SwiftTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */; };
 		E4EE423B1B3BB67400D48BFE /* SwiftTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */; };
+		E4F0A8661B5875A600267F8E /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = E4F0A8651B5875A600267F8E /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		E4C6D65D1B2A1A2C00E0EDF3 /* SwiftTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTextView.swift; sourceTree = "<group>"; };
 		E4C6D6601B2A1CC100E0EDF3 /* SwiftSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSearchBar.swift; sourceTree = "<group>"; };
 		E4EE42391B3BB67400D48BFE /* SwiftTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTableView.swift; sourceTree = "<group>"; };
+		E4F0A8651B5875A600267F8E /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		50C4A0B21A7AEA8B0010C199 = {
 			isa = PBXGroup;
 			children = (
+				E4F0A8651B5875A600267F8E /* LICENSE.md */,
 				E459820B1AE8655D008393A5 /* SwiftBindingUI.podspec */,
 				E462F9371AE83BD30019E621 /* Podfile */,
 				50BDFB1D1A8980C800681CD6 /* README.md */,
@@ -434,6 +437,7 @@
 				50C4A0EF1A7AEC970010C199 /* BindableSearchBar.swift in Sources */,
 				50544D621AC5E39400BD1B8E /* PHiddenBindable.swift in Sources */,
 				E4C6D65E1B2A1A2C00E0EDF3 /* SwiftTextView.swift in Sources */,
+				E4F0A8661B5875A600267F8E /* LICENSE.md in Sources */,
 				E4C6D65B1B2A113800E0EDF3 /* SwiftTextField.swift in Sources */,
 				50AA32B41A8D49600073EA6A /* BindableTableSection.swift in Sources */,
 				504ECC031AA1A491006F05C2 /* BindableSwitch.swift in Sources */,
