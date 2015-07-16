@@ -23,7 +23,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         set(value){
             if(value != nil){
                 //HACK: set to public property to add bindings properly, unsafe for subclassing.
-                self.sections = BindableArray<PBindableCollectionSection>(internalArray: [value!])
+                self.sections = BindableArray<PBindableCollectionSection>(value: [value!])
             }
             else{
                 _sections = nil
