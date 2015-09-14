@@ -75,10 +75,10 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     accessoryButtonTappedForRowWithIndexPath?(indexPath: indexPath)
   }
   
-  public var accessoryTypeForRowWithIndexPath:((indexPath:NSIndexPath) -> UITableViewCellAccessoryType)?
-  public func tableView(tableView: UITableView, accessoryTypeForRowWithIndexPath indexPath: NSIndexPath!) -> UITableViewCellAccessoryType {
-    return accessoryTypeForRowWithIndexPath?(indexPath: indexPath) ?? UITableViewCellAccessoryType.None
-  }
+//  public var accessoryTypeForRowWithIndexPath:((indexPath:NSIndexPath) -> UITableViewCellAccessoryType)?
+//  public func tableView(tableView: UITableView, accessoryTypeForRowWithIndexPath indexPath: NSIndexPath!) -> UITableViewCellAccessoryType {
+//    return accessoryTypeForRowWithIndexPath?(indexPath: indexPath) ?? UITableViewCellAccessoryType.None
+//  }
   
   public var canMoveRowAtIndexPath:((indexPath:NSIndexPath) -> Bool)?
   public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
