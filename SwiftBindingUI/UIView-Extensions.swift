@@ -21,7 +21,7 @@ public extension UIView{
   
   @IBInspectable public var borderColor:UIColor?{
     get{
-      return UIColor(CGColor: self.layer.borderColor)
+      return self.layer.borderColor != nil ? UIColor(CGColor: self.layer.borderColor!) : nil
     }
     set(value){
       self.layer.borderColor = value?.CGColor
@@ -56,7 +56,7 @@ public extension UIView{
   }
   
   public func constrainToTopMargin(parent:UIView, margin:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.TopMargin, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.TopMargin, multiplier: 1, constant: margin)
     
@@ -66,7 +66,7 @@ public extension UIView{
   }
   
   public func constrainToBottomMargin(parent:UIView, margin:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.BottomMargin, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.BottomMargin, multiplier: 1, constant: margin)
     
@@ -76,7 +76,7 @@ public extension UIView{
   }
   
   public func constrainToLeading(parent:UIView, margin:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: margin)
     
@@ -86,7 +86,7 @@ public extension UIView{
   }
   
   public func constrainToTrailing(parent:UIView, margin:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: margin)
     
@@ -107,7 +107,7 @@ public extension UIView{
   }
   
   public func constrainHeight(value:CGFloat) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: value)
     
@@ -117,7 +117,7 @@ public extension UIView{
   }
   
   public func constrainWidth(value:CGFloat) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: value)
     
@@ -127,7 +127,7 @@ public extension UIView{
   }
   
   public func constrainHeightToParent(parent:UIView, multiplier:CGFloat = 1.0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.Height, multiplier: multiplier, constant: 0)
     
@@ -137,7 +137,7 @@ public extension UIView{
   }
   
   public func constrainToParentCenterX(parent:UIView, multiplier:CGFloat = 1.0, constant:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterXWithinMargins, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.CenterXWithinMargins, multiplier: multiplier, constant: constant)
     
@@ -147,7 +147,7 @@ public extension UIView{
   }
   
   public func constrainToParentCenterY(parent:UIView, multiplier:CGFloat = 1.0, constant:CGFloat = 0) -> NSLayoutConstraint{
-    self.setTranslatesAutoresizingMaskIntoConstraints(false)
+    self.translatesAutoresizingMaskIntoConstraints = false
     
     let constraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.CenterYWithinMargins, relatedBy: NSLayoutRelation.Equal, toItem: parent, attribute: NSLayoutAttribute.CenterYWithinMargins, multiplier: multiplier, constant: constant)
     

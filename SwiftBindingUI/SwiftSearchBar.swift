@@ -16,7 +16,7 @@ public class SwiftSearchBar:UISearchBar, UISearchBarDelegate{
     self.delegate = self
   }
   
-  public required init(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
     self.delegate = self
@@ -24,7 +24,7 @@ public class SwiftSearchBar:UISearchBar, UISearchBarDelegate{
   
   public var onTextChanged:((text:String) -> Void)?
   internal func textChanged(){
-    onTextChanged?(text:self.text)
+    onTextChanged?(text:self.text!)
   }
   public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
     textChanged()

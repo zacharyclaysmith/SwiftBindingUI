@@ -83,7 +83,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         }
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
         
         self.delegate = self
@@ -169,7 +169,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         if(kind == UICollectionElementKindSectionHeader){
             assert(headerReuseIdentifier != nil, "Tried to create a supplementary element of kind UICollectionElementKindSectionHeader without setting the headerReuseIdentifier.")
             
-            var header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath) as! UICollectionReusableView
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath) 
 
             onHeaderCreation?(header:header)
             
@@ -177,7 +177,7 @@ public class BindableCollectionView:UICollectionView, UICollectionViewDataSource
         }else if(kind == UICollectionElementKindSectionFooter) {
             assert(footerReuseIdentifier != nil, "Tried to create a supplementary element of kind UICollectionElementKindSectionHeader without setting the footerReuseIdentifier.")
             
-            var footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: footerReuseIdentifier!, forIndexPath: indexPath) as! UICollectionReusableView
+            let footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: footerReuseIdentifier!, forIndexPath: indexPath) 
             
             onFooterCreation?(footer:footer)
             

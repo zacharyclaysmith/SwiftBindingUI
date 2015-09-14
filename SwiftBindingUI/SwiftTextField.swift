@@ -18,7 +18,7 @@ public class SwiftTextField:UITextField, UITextFieldDelegate{
     commonInit()
   }
   
-  public required init(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
     commonInit()
@@ -31,7 +31,7 @@ public class SwiftTextField:UITextField, UITextFieldDelegate{
   }
   
   internal func textChanged(){
-    onTextChanged?(text: self.text)
+    onTextChanged?(text: self.text!)
   }
   
   public var onTextChanged:((text:String) -> Void)?

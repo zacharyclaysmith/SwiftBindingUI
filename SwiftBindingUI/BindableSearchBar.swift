@@ -34,7 +34,7 @@ public class BindableSearchBar:SwiftSearchBar, PTextBindable, PHiddenBindable{
   
     internal override func textChanged(){
         if(_textBinding?.value != self.text){
-            _textBinding?.value = self.text
+            _textBinding?.value = self.text!
         }
       
       super.textChanged()

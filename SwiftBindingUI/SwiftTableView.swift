@@ -2,14 +2,8 @@ import UIKit
 import SwiftBinding
 
 public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDelegate{
-  public required init(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     super.init(coder:aDecoder)
-    
-    commonInit()
-  }
-  
-  override init(frame: CGRect) {
-    super.init(frame:frame)
     
     commonInit()
   }
@@ -85,8 +79,8 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     return canMoveRowAtIndexPath?(indexPath: indexPath) ?? true
   }
   
-  public var canPerformActionForRowAtIndexPathWithSender:((action:Selector, indexPath:NSIndexPath, sender:AnyObject) -> Bool)?
-  public func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
+  public var canPerformActionForRowAtIndexPathWithSender:((action:Selector, indexPath:NSIndexPath, sender:AnyObject?) -> Bool)?
+  public func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
     return canPerformActionForRowAtIndexPathWithSender?(action: action, indexPath: indexPath, sender: sender) ?? false
   }
   
@@ -125,8 +119,8 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     didUnhighlightRowAtIndexPath?(indexPath: indexPath)
   }
   
-  public var editActionsForRowAtIndexPath:((indexPath:NSIndexPath) -> [AnyObject]?)?
-  public func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+  public var editActionsForRowAtIndexPath:((indexPath:NSIndexPath) -> [UITableViewRowAction]?)?
+  public func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
     return editActionsForRowAtIndexPath?(indexPath: indexPath) ?? nil
   }
   
@@ -179,7 +173,7 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
   }
   
   public var performActionForRowAtIndexPathWithSender:((action:Selector, indexPath:NSIndexPath, sender:AnyObject!) -> Void)?
-  public func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+  public func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     performActionForRowAtIndexPathWithSender?(action: action, indexPath: indexPath, sender: sender)
   }
   
@@ -208,8 +202,8 @@ public class SwiftTableView : UITableView, UITableViewDataSource, UITableViewDel
     return targetIndexPathForMoveFromRowAtIndexPathToProposedIndexPath?(sourceIndexPath: sourceIndexPath, proposedDestinationIndexPath: proposedDestinationIndexPath) ?? proposedDestinationIndexPath
   }
   
-  public var titleForDeleteConfirmationButtonForRowAtIndexPath:((indexPath:NSIndexPath) -> String!)?
-  public func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+  public var titleForDeleteConfirmationButtonForRowAtIndexPath:((indexPath:NSIndexPath) -> String?)?
+  public func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
     return titleForDeleteConfirmationButtonForRowAtIndexPath?(indexPath: indexPath)
   }
   

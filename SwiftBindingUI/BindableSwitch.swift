@@ -48,7 +48,7 @@ public class BindableSwitch:UISwitch, PHiddenBindable{
         self.addTarget(self, action: "switchChanged", forControlEvents: UIControlEvents.ValueChanged)
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.addTarget(self, action: "switchChanged", forControlEvents: UIControlEvents.ValueChanged)

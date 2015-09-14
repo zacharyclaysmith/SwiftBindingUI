@@ -324,7 +324,9 @@
 		50C4A0B31A7AEA8B0010C199 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Scal.io;
 				TargetAttributes = {
 					50C4A0BB1A7AEA8B0010C199 = {
@@ -507,6 +509,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -587,6 +590,7 @@
 				INFOPLIST_FILE = SwiftBindingUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "scalio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftBindingUI;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -609,6 +613,7 @@
 				INFOPLIST_FILE = SwiftBindingUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "scalio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftBindingUI;
 				SKIP_INSTALL = YES;
 			};
@@ -631,6 +636,7 @@
 				);
 				INFOPLIST_FILE = SwiftBindingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "scalio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftBindingUITests;
 			};
 			name = Debug;
@@ -648,6 +654,7 @@
 				);
 				INFOPLIST_FILE = SwiftBindingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "scalio.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SwiftBindingUITests;
 			};
 			name = Release;

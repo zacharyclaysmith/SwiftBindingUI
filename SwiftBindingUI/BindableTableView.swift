@@ -133,7 +133,7 @@ public class BindableTableView : SwiftTableView, PHiddenBindable{
       
       if(self.cellForRowAtIndexPath != nil){
         wrapperClosure = {(sectionIndex:Int, index:Int) -> UITableViewCell in
-          return self.cellForRowAtIndexPath!(indexPath:NSIndexPath(forRow: index, inSection: sectionIndex)!)
+          return self.cellForRowAtIndexPath!(indexPath:NSIndexPath(forRow: index, inSection: sectionIndex))
         }
       }
       
